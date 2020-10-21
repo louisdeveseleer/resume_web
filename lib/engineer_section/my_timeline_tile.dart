@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:resume_web_app/widgets/image_dialog.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class ExtraLine {
   String imagePath;
@@ -36,12 +38,7 @@ class MyTimelineTile extends StatefulWidget {
 }
 
 class _MyTimelineTileState extends State<MyTimelineTile>
-    with SingleTickerProviderStateMixin {
-  static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0.0, end: 0.5);
-  static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.easeIn);
-
+    with TickerProviderStateMixin {
   bool _isExpanded = false;
   AnimationController _controller;
   Animation<double> _iconTurns;
@@ -50,9 +47,10 @@ class _MyTimelineTileState extends State<MyTimelineTile>
   @override
   void initState() {
     _controller =
-        AnimationController(duration: Duration(milliseconds: 200), vsync: this);
-    _heightFactor = _controller.drive(_easeInTween);
-    _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
+        AnimationController(duration: Duration(milliseconds: 300), vsync: this);
+    _heightFactor = _controller.drive(CurveTween(curve: Curves.easeInOut));
+    _iconTurns = _controller.drive(Tween<double>(begin: 0.0, end: 0.5)
+        .chain(CurveTween(curve: Curves.easeIn)));
     super.initState();
   }
 
@@ -82,136 +80,174 @@ class _MyTimelineTileState extends State<MyTimelineTile>
   @override
   Widget build(BuildContext context) {
     bool isSmall = ResponsiveWidget.isSmallScreen(context);
-
-    LineStyle lineStyle = LineStyle(
-      color: Theme.of(context).primaryColor.withOpacity(0.5),
-      thickness: 2,
-    );
-
     final bool closed = !_isExpanded && _controller.isDismissed;
 
-    final Widget result = Offstage(
+    final Widget details = Offstage(
       child: TickerMode(
-        child: Padding(
-          padding: EdgeInsets.zero,
-          child: Column(
-            children: widget.extras
-                .map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Row(
-                      children: [
-                        GestureDetector(
+        child: Column(
+          children: widget.extras
+              .map(
+                (e) => IntrinsicHeight(
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: isSmall ? 0 : 200,
+                      ),
+                      SizedBox(
+                        width: 32,
+                      ),
+                      Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Container(
+                            width: 2,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              color: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.5),
+                            ),
+                          ),
+                          Container(
+                            width: 16,
+                            height: 16,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 32,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                        child: GestureDetector(
                           onTap: () => showImageDialog(
                               context: context, imagePath: e.imagePath),
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,
-                            child: Container(
-                              width: 100,
-                              height: 65,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(e.imagePath),
-                                ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4),
+                              child: FadeInImage(
+                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 65,
+                                fadeInDuration: Duration(milliseconds: 200),
+                                placeholder: MemoryImage(kTransparentImage),
+                                image: AssetImage(e.imagePath),
                               ),
                             ),
                           ),
                         ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: Text(
-                            e.text,
-                            style: TextStyle(
-                              fontSize: 18,
-                            ),
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Text(
+                          e.text,
+                          style: TextStyle(
+                            fontSize: 18,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                )
-                .toList(),
-          ),
+                ),
+              )
+              .toList(),
         ),
         enabled: !closed,
       ),
       offstage: closed,
     );
 
-    return TimelineTile(
-      beforeLineStyle: lineStyle,
-      afterLineStyle: lineStyle,
-      isFirst: widget.isFirst,
-      isLast: widget.isLast,
-      axis: TimelineAxis.vertical,
-      alignment: isSmall ? TimelineAlign.start : TimelineAlign.manual,
-      lineXY: 0.3,
-      indicatorStyle: IndicatorStyle(
-        indicator: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-          ),
-        ),
-        padding: EdgeInsets.all(8),
-      ),
-      startChild: isSmall
-          ? null
-          : Container(
-              padding: EdgeInsets.all(24),
-              alignment: Alignment.centerRight,
-              constraints: BoxConstraints(
-                minHeight: 100,
-              ),
-              child: Text(
-                widget.date,
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ),
-      endChild: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return AnimatedBuilder(
+      animation: _controller.view,
+      builder: (context, child) {
+        return Column(
           children: [
-            isSmall
-                ? Text(
-                    widget.date,
-                    style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontStyle: FontStyle.italic,
+            IntrinsicHeight(
+              child: Row(
+                children: [
+                  !isSmall
+                      ? Container(
+                          width: 200,
+                          child: Text(
+                            widget.date,
+                            style:
+                                Theme.of(context).textTheme.headline6.copyWith(
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                            textAlign: TextAlign.end,
+                          ),
+                        )
+                      : Container(),
+                  SizedBox(
+                    width: 32,
+                  ),
+                  Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: [
+                      Container(
+                        width: 2,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color:
+                              Theme.of(context).primaryColor.withOpacity(0.5),
                         ),
-                  )
-                : Container(),
-            AnimatedBuilder(
-              animation: _controller.view,
-              builder: (context, child) {
-                return Column(
-                  children: [
-                    GestureDetector(
+                      ),
+                      Container(
+                        width: 16,
+                        height: 16,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: 32,
+                  ),
+                  Expanded(
+                    child: GestureDetector(
                       onTap: _handleTap,
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: Row(
                           children: [
                             Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8.0),
-                                    child: Text(
-                                      widget.title,
-                                      style:
-                                          Theme.of(context).textTheme.headline5,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 32.0, bottom: 16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    isSmall
+                                        ? Text(
+                                            widget.date,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6
+                                                .copyWith(
+                                                  fontStyle: FontStyle.italic,
+                                                ),
+                                          )
+                                        : Container(),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0),
+                                      child: Text(
+                                        widget.title,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline5,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    widget.subtitle,
-                                    style:
-                                        Theme.of(context).textTheme.headline6,
-                                  ),
-                                ],
+                                    Text(
+                                      widget.subtitle,
+                                      style:
+                                          Theme.of(context).textTheme.headline6,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                             RotationTransition(
@@ -222,24 +258,21 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                         ),
                       ),
                     ),
-                    ClipRect(
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        heightFactor: _heightFactor.value,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          child: child,
-                        ),
-                      ),
-                    ),
-                  ],
-                );
-              },
-              child: closed ? null : result,
+                  ),
+                ],
+              ),
+            ),
+            ClipRect(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                heightFactor: _heightFactor.value,
+                child: child,
+              ),
             ),
           ],
-        ),
-      ),
+        );
+      },
+      child: closed ? null : details,
     );
   }
 }

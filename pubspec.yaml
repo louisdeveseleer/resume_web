@@ -15,6 +15,7 @@ dependencies:
   scrollable_positioned_list: ^0.1.8
   timeline_tile: ^1.0.0
   font_awesome_flutter: ^8.10.0
+  transparent_image: ^1.0.0
 
 dev_dependencies:
   flutter_test:
