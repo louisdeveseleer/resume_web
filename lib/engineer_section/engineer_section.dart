@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/engineer_section/my_timeline_tile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/section_title.dart';
 
 class EngineerSection extends StatelessWidget {
@@ -32,7 +33,7 @@ class EngineerSection extends StatelessWidget {
           ),
           Container(
             constraints: BoxConstraints(
-              maxWidth: 1400,
+              maxWidth: Styles.maxContentWidth,
             ),
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 16),

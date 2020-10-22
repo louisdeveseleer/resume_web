@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resume_web_app/header_section/profile_pic.dart';
+import 'package:resume_web_app/header_section/drag_profile_pic.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -28,14 +28,13 @@ class HeaderSection extends StatelessWidget {
           ),
         ),
         Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
               height: 160,
             ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              alignment: Alignment.center,
+            Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +59,7 @@ class HeaderSection extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            ProfilePic(
+            DragProfilePic(
               itemPositionsListener: itemPositionsListener,
             ),
           ],

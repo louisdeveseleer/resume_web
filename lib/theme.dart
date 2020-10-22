@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Styles {
+  static double maxContentWidth = 1400;
+
   static ThemeData themeData() {
     Color blueColor = Color(0xff1c65eb);
     Color orangeColor = Color(0xffffb420);
-    Color darkGreyColor = Color(0xff3e4254);
-    Color lightGreyColor = Color(0xff727f8b);
 
     return ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,

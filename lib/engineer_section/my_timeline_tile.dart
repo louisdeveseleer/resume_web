@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:resume_web_app/widgets/image_dialog.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
-import 'package:timeline_tile/timeline_tile.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ExtraLine {
@@ -43,6 +42,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
   AnimationController _controller;
   Animation<double> _iconTurns;
   Animation<double> _heightFactor;
+  //TODO make images preloaded
 
   @override
   void initState() {
@@ -93,9 +93,6 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                       SizedBox(
                         width: isSmall ? 0 : 200,
                       ),
-                      SizedBox(
-                        width: 32,
-                      ),
                       Stack(
                         alignment: AlignmentDirectional.center,
                         children: [
@@ -115,7 +112,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                         ],
                       ),
                       SizedBox(
-                        width: 32,
+                        width: isSmall ? 16 : 32,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -143,7 +140,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                         child: Text(
                           e.text,
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: isSmall ? 16 : 18,
                           ),
                         ),
                       ),
@@ -169,6 +166,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                   !isSmall
                       ? Container(
                           width: 200,
+                          padding: EdgeInsets.only(right: 32),
                           child: Text(
                             widget.date,
                             style:
@@ -179,9 +177,6 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                           ),
                         )
                       : Container(),
-                  SizedBox(
-                    width: 32,
-                  ),
                   Stack(
                     alignment: AlignmentDirectional.center,
                     children: [
@@ -204,7 +199,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                     ],
                   ),
                   SizedBox(
-                    width: 32,
+                    width: isSmall ? 16 : 32,
                   ),
                   Expanded(
                     child: GestureDetector(

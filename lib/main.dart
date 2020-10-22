@@ -18,3 +18,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//TODO check which files should NOT go to github
