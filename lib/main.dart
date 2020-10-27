@@ -1,12 +1,12 @@
-import 'dart:html';
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
+// import 'dart:html';
+// import 'package:device_preview/device_preview.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/home_page.dart';
 import 'package:resume_web_app/theme.dart';
 
 void main() {
-  querySelector("#loader").remove();
+  // querySelector("#container").remove();
   runApp(MyApp());
   // runApp(
   //   DevicePreview(
@@ -17,7 +17,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

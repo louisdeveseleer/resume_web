@@ -1,7 +1,6 @@
 .lds-circle {
   display: flex;
   justify-content: center;
-  align-items: center;
   transform: translateZ(1px);
 }
 .lds-circle > div {
@@ -27,4 +26,17 @@
   100% {
     transform: rotateY(3600deg);
   }
+}
+.container {
+  height: 400px;
+  position: relative;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

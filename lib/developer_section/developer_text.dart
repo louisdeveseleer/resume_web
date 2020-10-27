@@ -10,7 +10,7 @@ class DeveloperText extends StatelessWidget {
     final double padding = isSmall ? 16 : 32;
     final TextStyle _textStyle = Theme.of(context).textTheme.bodyText1;
     final TextStyle _accentTextStyle = _textStyle.copyWith(
-      color: Color(0xff595E52),
+      color: Color(0xff748A4D),
       fontWeight: FontWeight.bold,
     );
 

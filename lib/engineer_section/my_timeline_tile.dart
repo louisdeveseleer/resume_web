@@ -182,82 +182,88 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                     width: isSmall ? 8 : 16,
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: _handleTap,
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        onEnter: (_) {
-                          setState(() {
-                            _isHovering = true;
-                          });
-                        },
-                        onExit: (_) {
-                          setState(() {
-                            _isHovering = false;
-                          });
-                        },
-                        child: AnimatedContainer(
-                          duration: Duration(milliseconds: 200),
-                          decoration: BoxDecoration(
-                            color: _isHovering
-                                ? Colors.white12
-                                : Colors.transparent,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: isSmall ? 8 : 16,
-                              ),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 50.0, bottom: 30),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      isSmall
-                                          ? Text(
-                                              widget.date,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyText1
-                                                  .copyWith(
-                                                    fontStyle: FontStyle.italic,
-                                                  ),
-                                            )
-                                          : Container(),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 8.0),
-                                        child: Text(
-                                          widget.title,
+                    child: Tooltip(
+                      message: 'Clip to expand',
+                      waitDuration: Duration(milliseconds: 300),
+                      preferBelow: true,
+                      child: InkWell(
+                        onTap: _handleTap,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          onEnter: (_) {
+                            setState(() {
+                              _isHovering = true;
+                            });
+                          },
+                          onExit: (_) {
+                            setState(() {
+                              _isHovering = false;
+                            });
+                          },
+                          child: AnimatedContainer(
+                            duration: Duration(milliseconds: 200),
+                            decoration: BoxDecoration(
+                              color: _isHovering
+                                  ? Colors.white12
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: isSmall ? 8 : 16,
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 50.0, bottom: 30),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        isSmall
+                                            ? Text(
+                                                widget.date,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1
+                                                    .copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    ),
+                                              )
+                                            : Container(),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 8.0),
+                                          child: Text(
+                                            widget.title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5,
+                                          ),
+                                        ),
+                                        Text(
+                                          widget.subtitle,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .headline5,
+                                              .bodyText1,
                                         ),
-                                      ),
-                                      Text(
-                                        widget.subtitle,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: RotationTransition(
-                                  turns: _iconTurns,
-                                  child: const Icon(
-                                    Icons.expand_more,
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: RotationTransition(
+                                    turns: _iconTurns,
+                                    child: const Icon(
+                                      Icons.expand_more,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),
