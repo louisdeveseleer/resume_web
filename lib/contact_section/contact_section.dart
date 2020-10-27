@@ -1,6 +1,8 @@
-import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:resume_web_app/theme.dart';
+import 'package:resume_web_app/widgets/responsive_widget.dart';
 import 'package:resume_web_app/widgets/section_title.dart';
 
 class ContactSection extends StatelessWidget {
@@ -8,33 +10,45 @@ class ContactSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
-      child: Column(
-        children: [
-          SectionTitle(
-            icon: Icons.contact_mail,
-            title: 'Contact',
-          ),
-          Wrap(
+      height: MediaQuery.of(context).size.height,
+      child: Center(
+        child: Container(
+          // padding: EdgeInsets.all(16),
+          width: Styles.maxContentWidth,
+          child: Column(
             children: [
-              ContactBlock(
-                title: 'Email',
-                information: 'louis.deveseleer@gmail.com',
-                iconData: Icons.email,
+              SectionTitle(
+                icon: Icons.contact_page,
+                title: 'Contact',
               ),
-              ContactBlock(
-                title: 'Phone',
-                information: '+1 919 746 6263',
-                iconData: Icons.phone,
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      color: Color(0xffccaa8f),
+                      child: ContactBlock(
+                        title: 'Email',
+                        information: 'louis.deveseleer@gmail.com',
+                        iconData: Icons.email,
+                      ),
+                    ),
+                    Container(
+                      color: Color(0xffccaa8f),
+                      child: ContactBlock(
+                        title: 'Phone',
+                        information: '+1 919 746 6263',
+                        iconData: Icons.phone,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
-          SizedBox(
-            height: 96,
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -50,46 +64,90 @@ class ContactBlock extends StatelessWidget {
     @required this.iconData,
   });
 
+  bool _copyToClipboardHack(String text) {
+    final textarea = new TextAreaElement();
+    document.body.append(textarea);
+    textarea.style.border = '0';
+    textarea.style.margin = '0';
+    textarea.style.padding = '0';
+    textarea.style.opacity = '0';
+    textarea.style.position = 'absolute';
+    textarea.readOnly = true;
+    textarea.value = text;
+    textarea.select();
+    final result = document.execCommand('copy');
+    textarea.remove();
+    return result;
+  }
+
+  final snackBar = SnackBar(content: Text('Text copied to clipboard.'));
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 400,
-      padding: EdgeInsets.all(16),
-      child: ExpansionTileCard(
-        baseColor: Colors.grey[200],
-        expandedColor: Color(0xfffff7e8),
-        initialPadding: EdgeInsets.zero,
-        finalPadding: EdgeInsets.zero,
-        initialElevation: 2,
-        elevation: 4,
-        contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 32),
-        leading: Icon(iconData),
-        title: Text(
-          title,
-        ),
-        children: [
-          Material(
-            color: Theme.of(context).scaffoldBackgroundColor,
-            child: Column(
-              children: [
-                Divider(
-                  thickness: 1,
-                  height: 1,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(32),
-                  child: FittedBox(
-                    fit: BoxFit.contain,
+    bool isSmall = ResponsiveWidget.isSmallScreen(context);
+    return Center(
+      child: Container(
+        width: 420,
+        padding:
+            EdgeInsets.symmetric(horizontal: 16, vertical: isSmall ? 30 : 60),
+        child: isSmall
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    iconData,
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  FittedBox(
                     child: SelectableText(
                       information,
-                      style: Theme.of(context).textTheme.headline5,
+                      scrollPhysics: NeverScrollableScrollPhysics(),
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-        ],
+                  IconButton(
+                    icon: Icon(Icons.copy),
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      _copyToClipboardHack(information);
+                    },
+                  ),
+                ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Icon(
+                    iconData,
+                    size: isSmall ? 32 : 64,
+                  ),
+                  SizedBox(
+                    width: 16,
+                    height: 16,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      FittedBox(
+                        child: SelectableText(
+                          information,
+                          scrollPhysics: NeverScrollableScrollPhysics(),
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.copy),
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          _copyToClipboardHack(information);
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
       ),
     );
   }

@@ -42,7 +42,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
   AnimationController _controller;
   Animation<double> _iconTurns;
   Animation<double> _heightFactor;
-  //TODO make images preloaded
+  bool _isHovering = false;
 
   @override
   void initState() {
@@ -79,7 +79,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
 
   @override
   Widget build(BuildContext context) {
-    bool isSmall = ResponsiveWidget.isSmallScreen(context);
+    final bool isSmall = ResponsiveWidget.isSmallScreen(context);
     final bool closed = !_isExpanded && _controller.isDismissed;
 
     final Widget details = Offstage(
@@ -114,35 +114,15 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                       SizedBox(
                         width: isSmall ? 16 : 32,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: GestureDetector(
-                          onTap: () => showImageDialog(
-                              context: context, imagePath: e.imagePath),
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4),
-                              child: FadeInImage(
-                                fit: BoxFit.cover,
-                                width: 100,
-                                height: 65,
-                                fadeInDuration: Duration(milliseconds: 200),
-                                placeholder: MemoryImage(kTransparentImage),
-                                image: AssetImage(e.imagePath),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 16),
                       Expanded(
-                        child: Text(
-                          e.text,
-                          style: TextStyle(
-                            fontSize: isSmall ? 16 : 18,
-                          ),
-                        ),
+                        child: isSmall
+                            ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: _contentChildren(context, e),
+                              )
+                            : Row(
+                                children: _contentChildren(context, e),
+                              ),
                       ),
                     ],
                   ),
@@ -170,7 +150,7 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                           child: Text(
                             widget.date,
                             style:
-                                Theme.of(context).textTheme.headline6.copyWith(
+                                Theme.of(context).textTheme.bodyText1.copyWith(
                                       fontStyle: FontStyle.italic,
                                     ),
                             textAlign: TextAlign.end,
@@ -199,57 +179,86 @@ class _MyTimelineTileState extends State<MyTimelineTile>
                     ],
                   ),
                   SizedBox(
-                    width: isSmall ? 16 : 32,
+                    width: isSmall ? 8 : 16,
                   ),
                   Expanded(
                     child: GestureDetector(
                       onTap: _handleTap,
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 32.0, bottom: 16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    isSmall
-                                        ? Text(
-                                            widget.date,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .headline6
-                                                .copyWith(
-                                                  fontStyle: FontStyle.italic,
-                                                ),
-                                          )
-                                        : Container(),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0),
-                                      child: Text(
-                                        widget.title,
+                        onEnter: (_) {
+                          setState(() {
+                            _isHovering = true;
+                          });
+                        },
+                        onExit: (_) {
+                          setState(() {
+                            _isHovering = false;
+                          });
+                        },
+                        child: AnimatedContainer(
+                          duration: Duration(milliseconds: 200),
+                          decoration: BoxDecoration(
+                            color: _isHovering
+                                ? Colors.white12
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: isSmall ? 8 : 16,
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 50.0, bottom: 30),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      isSmall
+                                          ? Text(
+                                              widget.date,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyText1
+                                                  .copyWith(
+                                                    fontStyle: FontStyle.italic,
+                                                  ),
+                                            )
+                                          : Container(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8.0),
+                                        child: Text(
+                                          widget.title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .headline5,
+                                        ),
+                                      ),
+                                      Text(
+                                        widget.subtitle,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .headline5,
+                                            .bodyText1,
                                       ),
-                                    ),
-                                    Text(
-                                      widget.subtitle,
-                                      style:
-                                          Theme.of(context).textTheme.headline6,
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            RotationTransition(
-                              turns: _iconTurns,
-                              child: const Icon(Icons.expand_more),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: RotationTransition(
+                                  turns: _iconTurns,
+                                  child: const Icon(
+                                    Icons.expand_more,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -269,5 +278,38 @@ class _MyTimelineTileState extends State<MyTimelineTile>
       },
       child: closed ? null : details,
     );
+  }
+
+  List<Widget> _contentChildren(BuildContext context, ExtraLine e) {
+    return [
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: GestureDetector(
+          onTap: () =>
+              showImageDialog(context: context, imagePath: e.imagePath),
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: FadeInImage(
+              fit: BoxFit.cover,
+              width: 100,
+              height: 65,
+              fadeInDuration: Duration(milliseconds: 200),
+              placeholder: MemoryImage(kTransparentImage),
+              image: AssetImage(e.imagePath),
+            ),
+          ),
+        ),
+      ),
+      SizedBox(width: 16),
+      Expanded(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Text(
+            e.text,
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
+        ),
+      ),
+    ];
   }
 }

@@ -21,7 +21,9 @@ class MenuItem extends StatelessWidget {
   }
 
   Widget _content(BuildContext context) {
-    TextStyle textStyle = Theme.of(context).accentTextTheme.headline5;
+    TextStyle textStyle = Theme.of(context).accentTextTheme.headline5.copyWith(
+          color: Colors.black87,
+        );
     return Row(
       children: [
         Text(

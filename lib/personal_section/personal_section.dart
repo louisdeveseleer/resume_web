@@ -24,14 +24,15 @@ class _PersonalSectionState extends State<PersonalSection> {
   @override
   void initState() {
     super.initState();
-    soignies1 = Image.asset('assets/soignies-grandplace.jpg');
-    soignies2 = Image.asset('assets/soignies-map.jpg');
-    raleigh1 = Image.asset('assets/raleigh-downtown.jpg');
-    raleigh2 = Image.asset('assets/raleigh-map.jpg');
-    imari1 = Image.asset('assets/imari.jpg');
-    imari2 = Image.asset('assets/imari_and_louis.jpg');
-    bella1 = Image.asset('assets/bella.jpg');
-    bella2 = Image.asset('assets/bella2.jpg');
+    soignies1 =
+        Image.asset('assets/soignies-grandplace.jpg', fit: BoxFit.cover);
+    soignies2 = Image.asset('assets/soignies-map.jpg', fit: BoxFit.cover);
+    raleigh1 = Image.asset('assets/raleigh-downtown.jpg', fit: BoxFit.cover);
+    raleigh2 = Image.asset('assets/raleigh-map.jpg', fit: BoxFit.cover);
+    imari1 = Image.asset('assets/imari.jpg', fit: BoxFit.cover);
+    imari2 = Image.asset('assets/imari_and_louis.jpg', fit: BoxFit.cover);
+    bella1 = Image.asset('assets/bella.jpg', fit: BoxFit.cover);
+    bella2 = Image.asset('assets/bella2.jpg', fit: BoxFit.cover);
   }
 
   @override
@@ -49,48 +50,54 @@ class _PersonalSectionState extends State<PersonalSection> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: ResponsiveWidget.isSmallScreen(context)
-            ? EdgeInsets.all(32.0)
-            : EdgeInsets.all(64.0),
-        child: Wrap(
-          alignment: WrapAlignment.spaceAround,
-          runAlignment: WrapAlignment.center,
-          spacing: 32,
-          runSpacing: 64,
-          children: [
-            PersonalCard(
-              text: 'Born in Soignies, Belgium',
-              image1: soignies1.image,
-              image2: soignies2.image,
-              color1: Color(0xff046f57),
-              color2: Color(0xff50b08a),
-            ),
-            PersonalCard(
-              text: 'Living in Raleigh, NC',
-              image1: raleigh1.image,
-              image2: raleigh2.image,
-              color1: Color(0xffe7873f),
-              color2: Color(0xffeca921),
-            ),
-            PersonalCard(
-              text: 'with wife Imari',
-              image1: imari1.image,
-              image2: imari2.image,
-              color1: Color(0xff245270),
-              color2: Color(0xff1775a9),
-            ),
-            PersonalCard(
-              text: 'and cat Bella',
-              image1: bella1.image,
-              image2: bella2.image,
-              color1: Color(0xffc32b2b),
-              color2: Color(0xfff25252),
-            ),
-          ],
+    final width = MediaQuery.of(context).size.width;
+    return Column(
+      children: [
+        Container(
+          width: width,
+          height: width > 1600
+              ? 600
+              : width < 800
+                  ? 2000
+                  : 1000,
+          padding: ResponsiveWidget.isSmallScreen(context)
+              ? EdgeInsets.all(32.0)
+              : EdgeInsets.all(64.0),
+          child: Wrap(
+            direction: Axis.vertical,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            alignment: WrapAlignment.spaceEvenly,
+            runAlignment: WrapAlignment.center,
+            spacing: 64,
+            runSpacing: 64,
+            children: [
+              PersonalCard(
+                text: 'Born in Soignies, Belgium',
+                imagePath1: 'assets/soignies-grandplace.jpg',
+                imagePath2: 'assets/soignies-map.jpg',
+              ),
+              PersonalCard(
+                text: 'Living in Raleigh, NC',
+                imagePath1: 'assets/raleigh-downtown.jpg',
+                imagePath2: 'assets/raleigh-map.jpg',
+              ),
+              PersonalCard(
+                text: 'with wife Imari',
+                imagePath1: 'assets/imari.jpg',
+                imagePath2: 'assets/imari_and_louis.jpg',
+              ),
+              PersonalCard(
+                text: 'and cat Bella',
+                imagePath1: 'assets/bella.jpg',
+                imagePath2: 'assets/bella2.jpg',
+              ),
+            ],
+          ),
         ),
-      ),
+        SizedBox(
+          height: 50,
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/developer_section/developer_text.dart';
+import 'package:resume_web_app/developer_section/flutter_portfolio.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/section_title.dart';
 
@@ -8,23 +9,32 @@ class DeveloperSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-      ),
       child: Center(
         child: Container(
+          padding: EdgeInsets.all(16),
           width: Styles.maxContentWidth,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SectionTitle(
                 icon: Icons.code,
                 title: 'Developer',
               ),
               DeveloperText(),
-              //TODO Add Flutter portfolio
               SizedBox(
-                height: 32,
+                height: 50,
+              ),
+              Text(
+                'Here are my Flutter projects:',
+                style: Theme.of(context).textTheme.headline5,
+                textAlign: TextAlign.start,
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              FlutterPortfolio(),
+              SizedBox(
+                height: 100,
               ),
             ],
           ),

@@ -1,6 +1,8 @@
+import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:resume_web_app/header_section/drag_profile_pic.dart';
+import 'package:resume_web_app/header_section/bouncing_profile_pic.dart';
+import 'package:resume_web_app/widgets/responsive_widget.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -11,18 +13,22 @@ class HeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isSmall = ResponsiveWidget.isSmallScreen(context);
     return Stack(
+      fit: StackFit.passthrough,
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
           height: 580,
           decoration: BoxDecoration(
-            gradient: RadialGradient(
-              center: Alignment.topRight,
-              radius: 1.5,
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
               colors: [
-                Color(0xff43acf4),
-                Color(0xff1452be),
+                Color(0xff7a7d6b),
+                Color(0xff595e52),
+                // Color(0xff43acf4),
+                // Color(0xff1452be),
               ],
             ),
           ),
@@ -39,10 +45,6 @@ class HeaderSection extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Hello there, I am',
-                    style: Theme.of(context).accentTextTheme.headline5,
-                  ),
                   FittedBox(
                     child: Text(
                       'Louis Deveseleer',
@@ -50,7 +52,7 @@ class HeaderSection extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'and this is my CV',
+                    'Welcome to my CV',
                     style: Theme.of(context).accentTextTheme.headline5,
                   ),
                 ],
@@ -59,9 +61,18 @@ class HeaderSection extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-            DragProfilePic(
-              itemPositionsListener: itemPositionsListener,
-            ),
+            isSmall
+                ? BouncingProfilePic(
+                    itemPositionsListener: itemPositionsListener,
+                  )
+                : PressableDough(
+                    child: BouncingProfilePic(
+                      itemPositionsListener: itemPositionsListener,
+                    ),
+                  ),
+            // SizedBox(
+            //   height: 50,
+            // ),
           ],
         ),
       ],

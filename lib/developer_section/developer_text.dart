@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:resume_web_app/widgets/responsive_widget.dart';
 
 class DeveloperText extends StatelessWidget {
+  final double padding = 32;
+
   @override
   Widget build(BuildContext context) {
-    final TextStyle _textStyle = Theme.of(context).textTheme.headline6;
+    final bool isSmall = ResponsiveWidget.isSmallScreen(context);
+    final double padding = isSmall ? 16 : 32;
+    final TextStyle _textStyle = Theme.of(context).textTheme.bodyText1;
     final TextStyle _accentTextStyle = _textStyle.copyWith(
-      color: Colors.green[700],
-      fontWeight: FontWeight.w600,
+      color: Color(0xff595E52),
+      fontWeight: FontWeight.bold,
     );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.all(16),
-          child: RichText(
+    return Container(
+      padding: EdgeInsets.all(padding),
+      decoration: BoxDecoration(
+        color: Color(0xffECECE9),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(padding),
+          topRight: Radius.circular(padding),
+          bottomRight: Radius.circular(padding),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
@@ -28,10 +41,8 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.all(16),
-          child: RichText(
+          SizedBox(height: padding),
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
@@ -45,10 +56,8 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: RichText(
+          SizedBox(height: padding),
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(text: 'At university, I used ', style: _textStyle),
@@ -57,10 +66,8 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: RichText(
+          SizedBox(height: padding),
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
@@ -73,10 +80,8 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: RichText(
+          SizedBox(height: padding),
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
@@ -88,10 +93,8 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: RichText(
+          SizedBox(height: padding),
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
@@ -104,10 +107,8 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: RichText(
+          SizedBox(height: padding),
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(text: 'I also programmed ', style: _textStyle),
@@ -118,14 +119,11 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16),
-          child: RichText(
+          SizedBox(height: padding),
+          RichText(
             text: TextSpan(
               children: <TextSpan>[
-                TextSpan(
-                    text: 'In 2020, I got a passion for ', style: _textStyle),
+                TextSpan(text: 'In 2020, I got into ', style: _textStyle),
                 TextSpan(text: 'Flutter (dart)', style: _accentTextStyle),
                 TextSpan(
                     text:
@@ -134,19 +132,8 @@ class DeveloperText extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
-}
-
-Future _showExtraInfo(BuildContext context) async {
-  return showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        child: Text('Matlab'),
-      );
-    },
-  );
 }

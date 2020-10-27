@@ -1,27 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Styles {
   static double maxContentWidth = 1400;
 
   static ThemeData themeData() {
-    Color blueColor = Color(0xff1c65eb);
-    Color orangeColor = Color(0xffffb420);
-
     return ThemeData(
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      primaryColor: blueColor,
+      primaryColor: Color(0xff595362),
       cardTheme: CardTheme(
-        elevation: 8.0,
-      ),
-      appBarTheme: AppBarTheme(
-        color: blueColor,
         elevation: 4.0,
       ),
-      accentColor: orangeColor,
-      primarySwatch: Colors.blue,
-      textTheme: Typography.blackCupertino,
-      accentTextTheme: Typography.whiteCupertino,
+      accentColor: Color(0xffb28057),
+      primarySwatch: Colors.indigo,
+      textTheme: Typography.blackMountainView.copyWith(
+        headline1: GoogleFonts.poppins(),
+        headline2: GoogleFonts.poppins(),
+        headline3: GoogleFonts.poppins(),
+        headline4: GoogleFonts.poppins(),
+        headline5: GoogleFonts.poppins(),
+        headline6: GoogleFonts.poppins(),
+        bodyText1: GoogleFonts.raleway().copyWith(
+          fontSize: 20,
+        ),
+        subtitle1: GoogleFonts.raleway().copyWith(
+          fontSize: 20,
+        ),
+      ),
+      accentTextTheme: Typography.whiteMountainView.copyWith(
+        headline1: GoogleFonts.poppins(),
+        headline2: GoogleFonts.poppins(),
+        headline3: GoogleFonts.poppins(),
+        headline4: GoogleFonts.poppins(),
+        headline5: GoogleFonts.poppins(),
+        headline6: GoogleFonts.poppins(),
+        bodyText1: GoogleFonts.raleway().copyWith(
+          fontSize: 20,
+        ),
+        subtitle1: GoogleFonts.raleway().copyWith(
+          fontSize: 20,
+        ),
+      ),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/athlete_section/athlete_section.dart';
@@ -6,9 +8,9 @@ import 'package:resume_web_app/developer_section/developer_section.dart';
 import 'package:resume_web_app/engineer_section/engineer_section.dart';
 import 'package:resume_web_app/footer_section/footer_section.dart';
 import 'package:resume_web_app/header_section/header_section.dart';
-import 'package:resume_web_app/header_section/menu.dart';
-import 'package:resume_web_app/header_section/menu_item.dart';
-import 'package:resume_web_app/personal_section/personal_section.dart';
+import 'package:resume_web_app/menu_item.dart';
+import 'package:resume_web_app/personal_section/personal_section_2.dart';
+import 'package:resume_web_app/widgets/responsive_widget.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,26 +36,29 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     itemPositionsListener.itemPositions.addListener(() {
       setState(() {
-        hasScrolled =
-            itemPositionsListener.itemPositions.value.first.itemLeadingEdge < 0
-                ? true
-                : false;
+        hasScrolled = itemPositionsListener.itemPositions.value
+                .any((element) => element.itemLeadingEdge < 0)
+            ? true
+            : false;
       });
     });
     super.initState();
   }
 
-  void gotToSection(int sectionNumber) {
-    itemScrollController.scrollTo(
-      index: sectionNumber,
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeInOut,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+    final bool isSmallScreen = ResponsiveWidget.isSmallScreen(context);
+
+    void gotToSection(int sectionNumber) {
+      itemScrollController.scrollTo(
+        index: sectionNumber,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+      if (isSmallScreen) {
+        Navigator.pop(context);
+      }
+    }
 
     List<Widget> menu = List.generate(
       menuItems.length,
@@ -67,55 +72,138 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: PreferredSize(
-        preferredSize: Size(screenSize.width, 70),
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 500),
-          decoration: BoxDecoration(
-            color: hasScrolled ? Colors.black26 : Colors.transparent,
-          ),
-          curve: Curves.easeInOut,
-          child: Menu(
-            menu: menu,
-          ),
+      drawerEdgeDragWidth: 0,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        titleSpacing: 0.0,
+        iconTheme: IconThemeData(
+          color: Colors.black87,
+        ),
+        title: _buildAnimatedOpacity(
+          isSmallScreen
+              ? Builder(
+                  builder: (context) => Row(
+                    children: [
+                      SizedBox(
+                        width: 8,
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.menu),
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                      ),
+                      Expanded(
+                        child: Container(),
+                      ),
+                    ],
+                  ),
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: menu,
+                ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      drawer: isSmallScreen
+          ? Drawer(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Text(
+                        'Menu',
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
+                    ),
+                    Divider(
+                      height: 1,
+                      thickness: 1,
+                      color: Colors.black45,
+                    ),
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: menu.length,
+                        separatorBuilder: (context, _) {
+                          return Divider();
+                        },
+                        itemBuilder: (builder, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 32),
+                            child: menu[index],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : null,
+      body: Scrollbar(
+        radius: Radius.circular(2),
+        child: ScrollablePositionedList.builder(
+          scrollDirection: Axis.vertical,
+          physics: BouncingScrollPhysics(),
+          itemScrollController: itemScrollController,
+          itemPositionsListener: itemPositionsListener,
+          itemCount: 7,
+          itemBuilder: (context, index) {
+            switch (index) {
+              case 0:
+                return HeaderSection(
+                  itemPositionsListener: itemPositionsListener,
+                );
+                break;
+              case 1:
+                return PersonalSection2();
+                break;
+              case 2:
+                return EngineerSection();
+                break;
+              case 3:
+                return DeveloperSection();
+                break;
+              case 4:
+                return AthleteSection(
+                  itemPositionsListener: itemPositionsListener,
+                );
+                break;
+              case 5:
+                return ContactSection();
+                break;
+              case 6:
+                return FooterSection();
+                break;
+              default:
+                return Container(
+                  child: Text('Error'),
+                );
+            }
+          },
         ),
       ),
-      body: ScrollablePositionedList.builder(
-        scrollDirection: Axis.vertical,
-        itemScrollController: itemScrollController,
-        itemPositionsListener: itemPositionsListener,
-        itemCount: 7,
-        itemBuilder: (context, index) {
-          switch (index) {
-            case 0:
-              return HeaderSection(
-                itemPositionsListener: itemPositionsListener,
-              );
-              break;
-            case 1:
-              return PersonalSection();
-              break;
-            case 2:
-              return EngineerSection();
-              break;
-            case 3:
-              return DeveloperSection();
-              break;
-            case 4:
-              return AthleteSection();
-              break;
-            case 5:
-              return ContactSection();
-              break;
-            case 6:
-              return FooterSection();
-              break;
-            default:
-              return Container(
-                child: Text('Error'),
-              );
-          }
-        },
+    );
+  }
+
+  AnimatedContainer _buildAnimatedOpacity(Widget child) {
+    return AnimatedContainer(
+      height: kToolbarHeight,
+      duration: Duration(milliseconds: 500),
+      decoration: BoxDecoration(
+        color: hasScrolled ? Colors.white24 : Colors.transparent,
+      ),
+      curve: Curves.easeInOut,
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+          child: child,
+        ),
       ),
     );
   }

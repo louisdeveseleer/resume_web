@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class BouncingProfilePic extends StatefulWidget {
@@ -15,6 +16,7 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
     with SingleTickerProviderStateMixin {
   Animation<double> _appearanceAnimation;
   AnimationController _appearanceController;
+  bool animationDone = false;
   Image louis;
   bool louisIsLoaded = false;
 
@@ -27,12 +29,16 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
     _appearanceAnimation = CurvedAnimation(
         parent: _appearanceController, curve: Curves.elasticOut);
     widget.itemPositionsListener.itemPositions.addListener(() {
-      if (widget.itemPositionsListener.itemPositions.value.first
-                  .itemTrailingEdge <
-              1.2 &&
+      double trailingEdge = widget.itemPositionsListener.itemPositions.value
+          .toList()[0]
+          .itemTrailingEdge;
+      if (trailingEdge < 1.2 &&
           !_appearanceController.isAnimating &&
-          louisIsLoaded) {
+          louisIsLoaded &&
+          !animationDone) {
+        print('forward');
         _appearanceController.forward();
+        animationDone = true;
       }
     });
     super.initState();
@@ -57,17 +63,10 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
       alignment: Alignment.center,
       scale: _appearanceAnimation,
       child: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(16),
-        margin: EdgeInsets.all(20),
-        width: 500,
-        height: 500,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: Theme.of(context).scaffoldBackgroundColor,
-        ),
+        width: 400,
         child: Card(
-          margin: EdgeInsets.all(0),
+          elevation: 8,
+          margin: EdgeInsets.all(16),
           shape: CircleBorder(
             side: BorderSide(
               color: Theme.of(context).accentColor,

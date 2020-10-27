@@ -1,3 +1,7 @@
+
+.firebase
+.firebaserc
+
 # Miscellaneous
 *.class
 *.log

@@ -2,44 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/click_region.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:resume_web_app/widgets/launch_url.dart';
 
 class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final TextStyle textStyle = Theme.of(context).accentTextTheme.bodyText2;
     return Container(
       padding: EdgeInsets.all(16),
       width: MediaQuery.of(context).size.width,
-      color: Colors.blueGrey[300],
+      color: Colors.black87,
       child: Center(
         child: Container(
           width: Styles.maxContentWidth,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ClickRegion(
-                onClick: () => _launchURL('https://flutter.dev/'),
-                child: Text(
-                  'Website created with Flutter',
-                ),
+              _buildItem(
+                textStyle,
+                () => launchURL('https://flutter.dev/'),
+                'Created with Flutter',
               ),
-              ClickRegion(
-                onClick: () =>
-                    _launchURL('https://github.com/louisdeveseleer/resume_web'),
-                child: Text(
-                  'See source code',
-                ),
+              _buildItem(
+                textStyle,
+                () =>
+                    launchURL('https://github.com/louisdeveseleer/resume_web'),
+                'Source code',
               ),
-              ClickRegion(
-                onClick: () => showAboutDialog(
+              _buildItem(
+                textStyle,
+                () => showAboutDialog(
                   context: context,
                   applicationName: 'Louis Deveseleer CV',
                   applicationIcon: Container(
                       height: 30, child: Image.asset('web/icons/Icon-192.png')),
                 ),
-                child: Text(
-                  'About',
-                ),
+                'About',
               ),
             ],
           ),
@@ -47,12 +45,19 @@ class FooterSection extends StatelessWidget {
       ),
     );
   }
-}
 
-_launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
+  Widget _buildItem(TextStyle textStyle, VoidCallback callback, String text) {
+    return FittedBox(
+      child: ClickRegion(
+        onClick: callback,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: Text(
+            text,
+            style: textStyle,
+          ),
+        ),
+      ),
+    );
   }
 }
