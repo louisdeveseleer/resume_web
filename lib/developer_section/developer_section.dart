@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/developer_section/developer_text.dart';
-import 'package:resume_web_app/developer_section/flutter_portfolio.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/section_title.dart';
 
@@ -31,10 +30,6 @@ class DeveloperSection extends StatelessWidget {
               ),
               SizedBox(
                 height: 50,
-              ),
-              FlutterPortfolio(),
-              SizedBox(
-                height: 100,
               ),
             ],
           ),

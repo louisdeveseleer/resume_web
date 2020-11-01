@@ -5,11 +5,12 @@ import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/athlete_section/athlete_section.dart';
 import 'package:resume_web_app/contact_section/contact_section.dart';
 import 'package:resume_web_app/developer_section/developer_section.dart';
+import 'package:resume_web_app/developer_section/portfolio_section.dart';
 import 'package:resume_web_app/engineer_section/engineer_section.dart';
 import 'package:resume_web_app/footer_section/footer_section.dart';
 import 'package:resume_web_app/header_section/header_section.dart';
 import 'package:resume_web_app/menu_item.dart';
-import 'package:resume_web_app/personal_section/personal_section_2.dart';
+import 'package:resume_web_app/personal_section/personal_section.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
           physics: BouncingScrollPhysics(),
           itemScrollController: itemScrollController,
           itemPositionsListener: itemPositionsListener,
-          itemCount: 7,
+          itemCount: 8,
           itemBuilder: (context, index) {
             switch (index) {
               case 0:
@@ -170,14 +171,17 @@ class _HomePageState extends State<HomePage> {
                 return DeveloperSection();
                 break;
               case 4:
-                return AthleteSection(
+                return PortfolioSection(
                   itemPositionsListener: itemPositionsListener,
                 );
                 break;
               case 5:
-                return ContactSection();
+                return AthleteSection();
                 break;
               case 6:
+                return ContactSection();
+                break;
+              case 7:
                 return FooterSection();
                 break;
               default:

@@ -81,12 +81,14 @@ class _PersonalCardState extends State<PersonalCard> {
                     child: Container(
                       width: width,
                       height: width,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: value >= 90 ? image2.image : image1.image,
+                      child: Card(
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Theme.of(context).accentColor,
+                            width: 2,
+                          ),
                         ),
+                        child: value >= 90 ? image2 : image1,
                       ),
                     ),
                   ),
@@ -120,50 +122,3 @@ class RotationY extends StatelessWidget {
         child: child);
   }
 }
-
-// child: Card(
-// child: value >= 90
-// ? Container(
-// height: double.infinity,
-// width: double.infinity,
-// decoration: BoxDecoration(
-// shape: BoxShape.circle,
-// ),
-// child: image2,
-// )
-// : Column(
-// children: [
-// Expanded(
-// child: Container(
-// decoration: BoxDecoration(
-// gradient: LinearGradient(
-// begin: Alignment.bottomLeft,
-// end: Alignment.topRight,
-// colors: [
-// Color(0xff4f4b58),
-// Color(0xff645e6e),
-// ],
-// ),
-// ),
-// child: Center(
-// child: Padding(
-// padding: const EdgeInsets.all(16.0),
-// child: Text(
-// widget.text,
-// style: textStyle,
-// ),
-// ),
-// ),
-// ),
-// ),
-// Expanded(
-// flex: 2,
-// child: Container(
-// width: double.infinity,
-// height: double.infinity,
-// child: image1,
-// ),
-// )
-// ],
-// ),
-// ),

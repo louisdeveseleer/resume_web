@@ -1,27 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/athlete_section/athlete_gallery.dart';
-import 'package:resume_web_app/athlete_section/athlete_sub_section.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/section_title.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-class AthleteSection extends StatefulWidget {
-  final ItemPositionsListener itemPositionsListener;
-  AthleteSection({
-    @required this.itemPositionsListener,
-  });
-
-  @override
-  _AthleteSectionState createState() => _AthleteSectionState();
-}
-
-class _AthleteSectionState extends State<AthleteSection> {
-  @override
-  void initState() {
-    widget.itemPositionsListener.itemPositions.addListener(() {});
-    super.initState();
-  }
-
+class AthleteSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
@@ -34,8 +16,6 @@ class _AthleteSectionState extends State<AthleteSection> {
           colors: [
             Color(0xff595362),
             Color(0xff4f4b58),
-            // Color(0xff43acf4),
-            // Color(0xff1452be),
           ],
         ),
       ),
@@ -69,37 +49,7 @@ class _AthleteSectionState extends State<AthleteSection> {
               ),
             ),
           ),
-
           AthleteGallery(),
-          // AthleteSubSection(
-          //   title: 'Calisthenics',
-          //   subtitle: 'Mastering the body',
-          //   text: 'Regular practice since 2017.',
-          //   imagePath: 'assets/calisthenics.jpg',
-          //   leftAligned: true,
-          // ),
-          // SizedBox(
-          //   height: 64,
-          // ),
-          // AthleteSubSection(
-          //   title: 'Bike touring',
-          //   subtitle: 'Seeing the in-betweens',
-          //   text:
-          //       'Travelling by bike allows me to see regions and meet people otherwise missed with traditional tourism.',
-          //   imagePath: 'assets/EuroBikeTrip179.jpg',
-          //   leftAligned: false,
-          // ),
-          // SizedBox(
-          //   height: 64,
-          // ),
-          // AthleteSubSection(
-          //   title: 'Hiking',
-          //   subtitle: 'Connecting with nature',
-          //   text:
-          //       'I love hiking/camping trips to take a break from every day life.',
-          //   imagePath: 'assets/hiking.jpg',
-          //   leftAligned: true,
-          // ),
           SizedBox(
             height: 100,
           ),

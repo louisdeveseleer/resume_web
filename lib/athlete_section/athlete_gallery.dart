@@ -21,7 +21,7 @@ class _AthleteGalleryState extends State<AthleteGallery> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     double width = screenSize.width;
-    double height = min(800, screenSize.height - 80);
+    double height = min(800, screenSize.height - 140);
     return CarouselSlider(
       carouselController: _controller,
       items: [
@@ -50,8 +50,8 @@ class _AthleteGalleryState extends State<AthleteGallery> {
         ),
       ],
       options: CarouselOptions(
-        enableInfiniteScroll: false,
-        scrollPhysics: NeverScrollableScrollPhysics(),
+        // enableInfiniteScroll: false,
+        // scrollPhysics: NeverScrollableScrollPhysics(),
         viewportFraction: min(0.75, 2 * height / width),
         autoPlay: true,
         autoPlayAnimationDuration: Duration(seconds: 1),
