@@ -171,9 +171,7 @@ class _HomePageState extends State<HomePage> {
                 return DeveloperSection();
                 break;
               case 4:
-                return PortfolioSection(
-                  itemPositionsListener: itemPositionsListener,
-                );
+                return PortfolioSection();
                 break;
               case 5:
                 return AthleteSection();

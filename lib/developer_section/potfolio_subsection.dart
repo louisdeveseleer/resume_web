@@ -5,13 +5,11 @@ class PortfolioSubsection extends StatelessWidget {
     @required this.imagePath,
     @required this.content,
     this.isLeftAligned: true,
-    this.imageOffset: 0.5,
   });
 
   final String imagePath;
   final Widget content;
   final bool isLeftAligned;
-  final double imageOffset;
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +39,7 @@ class PortfolioSubsection extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 70),
       width: 400,
       constraints: BoxConstraints(maxHeight: 600),
-      child: AnimatedAlign(
-        curve: Curves.fastLinearToSlowEaseIn,
-        alignment: Alignment(0, -imageOffset * 2 + 1),
-        heightFactor: 0.8,
-        duration: Duration(milliseconds: 500),
-        child: Image.asset(imagePath),
-      ),
+      child: Image.asset(imagePath),
     );
   }
 }

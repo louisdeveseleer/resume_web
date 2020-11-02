@@ -1,46 +1,10 @@
-import 'dart:math';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/developer_section/potfolio_subsection.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/launch_url.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-class PortfolioSection extends StatefulWidget {
-  final ItemPositionsListener itemPositionsListener;
-  PortfolioSection({
-    @required this.itemPositionsListener,
-  });
-
-  @override
-  _PortfolioSectionState createState() => _PortfolioSectionState();
-}
-
-class _PortfolioSectionState extends State<PortfolioSection> {
-  double scrollingPosition = 0;
-  double offset1 = 0;
-  double offset2 = 0;
-  double offset3 = 0;
-
-  void initState() {
-    widget.itemPositionsListener.itemPositions.addListener(() {
-      List<ItemPosition> itemPositions =
-          widget.itemPositionsListener.itemPositions.value.toList();
-      ItemPosition itemPosition = itemPositions
-          .singleWhere((element) => element.index == 4, orElse: () => null);
-      if (itemPosition != null) {
-        double leading = itemPosition.itemLeadingEdge;
-        double trailing = itemPosition.itemTrailingEdge;
-        scrollingPosition = (leading - 1) / (leading - trailing);
-        offset1 = max(0, min((scrollingPosition - 0.2) * 3, 1));
-        offset2 = max(0, min((scrollingPosition - 0.4) * 3, 1));
-        offset3 = max(0, min((scrollingPosition - 0.8) * 5, 1));
-      }
-    });
-    super.initState();
-  }
-
+class PortfolioSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyle = Theme.of(context).textTheme.bodyText1;
@@ -59,7 +23,6 @@ class _PortfolioSectionState extends State<PortfolioSection> {
             children: [
               SizedBox(height: 50),
               PortfolioSubsection(
-                imageOffset: offset1,
                 imagePath: 'assets/screenshot_website.png',
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +40,6 @@ class _PortfolioSectionState extends State<PortfolioSection> {
               ),
               SizedBox(height: 180),
               PortfolioSubsection(
-                imageOffset: offset2,
                 isLeftAligned: false,
                 imagePath: 'assets/screenshot_parq.png',
                 content: Column(
@@ -113,7 +75,6 @@ class _PortfolioSectionState extends State<PortfolioSection> {
               ),
               SizedBox(height: 180),
               PortfolioSubsection(
-                imageOffset: offset3,
                 imagePath: 'assets/screenshot_calistree1.png',
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
