@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class BouncingProfilePic extends StatefulWidget {
-  final ItemPositionsListener itemPositionsListener;
-  BouncingProfilePic({
-    @required this.itemPositionsListener,
-  });
-
   @override
   _BouncingProfilePicState createState() => _BouncingProfilePicState();
 }
@@ -16,7 +10,6 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
     with SingleTickerProviderStateMixin {
   Animation<double> _appearanceAnimation;
   AnimationController _appearanceController;
-  bool animationDone = false;
   Image louis;
   bool louisIsLoaded = false;
 
@@ -28,19 +21,7 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
           ..reset();
     _appearanceAnimation = CurvedAnimation(
         parent: _appearanceController, curve: Curves.elasticOut);
-    widget.itemPositionsListener.itemPositions.addListener(() {
-      double trailingEdge = widget.itemPositionsListener.itemPositions.value
-          .toList()[0]
-          .itemTrailingEdge;
-      if (trailingEdge < 1.2 &&
-          !_appearanceController.isAnimating &&
-          louisIsLoaded &&
-          !animationDone) {
-        print('forward');
-        _appearanceController.forward();
-        animationDone = true;
-      }
-    });
+    _appearanceController.forward();
     super.initState();
   }
 

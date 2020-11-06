@@ -12,14 +12,13 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
-  scrollable_positioned_list: ^0.1.8
   transparent_image: ^1.0.0
-  expansion_tile_card: ^1.1.0
   url_launcher: ^5.7.6
   dough: ^0.3.6
   google_fonts: ^1.1.1
   device_preview: ^0.4.8
   carousel_slider: ^2.3.1
+  draggable_scrollbar: ^0.0.4
 
 dev_dependencies:
   flutter_test:

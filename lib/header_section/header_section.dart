@@ -1,16 +1,12 @@
+import 'dart:html' as html;
 import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/header_section/bouncing_profile_pic.dart';
+import 'package:resume_web_app/widgets/click_region.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class HeaderSection extends StatelessWidget {
-  final ItemPositionsListener itemPositionsListener;
-  HeaderSection({
-    @required this.itemPositionsListener,
-  });
-
   @override
   Widget build(BuildContext context) {
     final bool isSmall = ResponsiveWidget.isSmallScreen(context);
@@ -19,7 +15,7 @@ class HeaderSection extends StatelessWidget {
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          height: 580,
+          height: 530,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -27,8 +23,6 @@ class HeaderSection extends StatelessWidget {
               colors: [
                 Color(0xff7a7d6b),
                 Color(0xff595e52),
-                // Color(0xff43acf4),
-                // Color(0xff1452be),
               ],
             ),
           ),
@@ -37,7 +31,7 @@ class HeaderSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 160,
+              height: 110,
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -55,6 +49,14 @@ class HeaderSection extends StatelessWidget {
                     'Welcome to my CV',
                     style: Theme.of(context).accentTextTheme.headline5,
                   ),
+                  ClickRegion(
+                    onClick: () => downloadFile(
+                        'https://firebasestorage.googleapis.com/v0/b/louisdeveseleerresume.appspot.com/o/CV%20Louis.pdf?alt=media&token=f309ca5a-405c-45c8-ac06-d46f9334c687'),
+                    child: Text(
+                      'pdf version',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -63,19 +65,22 @@ class HeaderSection extends StatelessWidget {
             ),
             isSmall
                 ? BouncingProfilePic(
-                    itemPositionsListener: itemPositionsListener,
-                  )
+                    // itemPositionsListener: itemPositionsListener,
+                    )
                 : PressableDough(
                     child: BouncingProfilePic(
-                      itemPositionsListener: itemPositionsListener,
-                    ),
+                        // itemPositionsListener: itemPositionsListener,
+                        ),
                   ),
-            // SizedBox(
-            //   height: 50,
-            // ),
           ],
         ),
       ],
     );
   }
+}
+
+void downloadFile(String url) {
+  html.AnchorElement anchorElement = new html.AnchorElement(href: url);
+  anchorElement.download = url;
+  anchorElement.click();
 }

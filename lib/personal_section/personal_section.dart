@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:resume_web_app/personal_section/personal_card.dart';
 import 'package:resume_web_app/theme.dart';
 
-class PersonalSection2 extends StatelessWidget {
+class PersonalSection extends StatelessWidget {
   final PersonalCard personalCard1 = PersonalCard(
     text: 'Born in Soignies, Belgium',
     imagePath1: 'assets/soignies.jpg',

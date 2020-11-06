@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/theme.dart';
@@ -13,7 +14,6 @@ class ContactSection extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: Center(
         child: Container(
-          // padding: EdgeInsets.all(16),
           width: Styles.maxContentWidth,
           child: Column(
             children: [
@@ -23,7 +23,6 @@ class ContactSection extends StatelessWidget {
               ),
               Expanded(
                 child: Column(
-                  mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -88,8 +87,10 @@ class ContactBlock extends StatelessWidget {
     return Center(
       child: Container(
         width: 420,
-        padding:
-            EdgeInsets.symmetric(horizontal: 16, vertical: isSmall ? 30 : 60),
+        padding: EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: min(
+                60, max(8, (MediaQuery.of(context).size.height - 600) / 4))),
         child: isSmall
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

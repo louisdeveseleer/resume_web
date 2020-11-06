@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
 
@@ -23,7 +25,7 @@ class SectionTitle extends StatelessWidget {
         isSmall ? textTheme.headline4 : textTheme.headline3;
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: isSmall ? 70 : 100,
+        vertical: min(100, max(0, MediaQuery.of(context).size.height / 10)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
