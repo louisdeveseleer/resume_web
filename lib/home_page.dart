@@ -1,4 +1,3 @@
-import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/athlete_section/athlete_section.dart';
@@ -32,23 +31,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: DraggableScrollbar.rrect(
-        alwaysVisibleScrollThumb: true,
-        backgroundColor: Colors.black45,
-        padding: EdgeInsets.symmetric(horizontal: 2),
+      body: ListView(
         controller: _scrollController,
-        child: ListView(
-          controller: _scrollController,
-          children: [
-            HeaderSection(),
-            PersonalSection(),
-            EngineerSection(),
-            DeveloperSection(),
-            AthleteSection(),
-            ContactSection(),
-            FooterSection(),
-          ],
-        ),
+        children: [
+          HeaderSection(),
+          PersonalSection(),
+          EngineerSection(),
+          DeveloperSection(),
+          AthleteSection(),
+          ContactSection(),
+          FooterSection(),
+        ],
       ),
     );
   }

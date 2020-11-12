@@ -19,6 +19,7 @@ dependencies:
   device_preview: ^0.4.8
   carousel_slider: ^2.3.1
   draggable_scrollbar: ^0.0.4
+  flutter_linkify: ^4.0.2
 
 dev_dependencies:
   flutter_test:

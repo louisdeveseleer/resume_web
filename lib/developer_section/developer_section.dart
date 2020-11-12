@@ -1,8 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:resume_web_app/developer_section/developer_text.dart';
 import 'package:resume_web_app/developer_section/potfolio_subsection.dart';
 import 'package:resume_web_app/theme.dart';
+import 'package:resume_web_app/widgets/click_region.dart';
 import 'package:resume_web_app/widgets/launch_url.dart';
 import 'package:resume_web_app/widgets/section_title.dart';
 
@@ -67,26 +68,32 @@ class DeveloperSection extends StatelessWidget {
                       'PAR-Q+',
                       style: titleStyle,
                     ),
-                    RichText(
+                    Linkify(
                       textAlign: TextAlign.end,
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'A questionnaire made by ',
-                              style: textStyle),
-                          TextSpan(
-                            text: 'eparmedx.com',
-                            style: textStyle.copyWith(color: Colors.blue),
-                            recognizer: TapGestureRecognizer()
-                              ..onTap =
-                                  () => launchURL('https://eparmedx.com/'),
+                      style: textStyle,
+                      text:
+                          'A questionnaire made by https://eparmedx.com/ to determine whether you need to consult a medical professional before increasing your physical activity.',
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ClickRegion(
+                            onClick: () => launchURL(
+                                'https://play.google.com/store/apps/details?id=com.louisdeveseleer.parq'),
+                            child: Image.asset('assets/google-play-badge.png'),
                           ),
-                          TextSpan(
-                              text:
-                                  ' to determine whether you need to consult a medical professional before increasing your physical activity.',
-                              style: textStyle),
-                        ],
-                      ),
+                        ),
+                        Expanded(
+                          child: ClickRegion(
+                            onClick: () => launchURL(
+                                'https://apps.apple.com/us/app/par-q/id1538862965'),
+                            child: Image.asset('assets/app-store_badge.png'),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
