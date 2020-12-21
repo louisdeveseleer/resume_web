@@ -1,4 +1,4 @@
-import 'dart:html' as html;
+import 'package:flutter/foundation.dart';
 import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -80,7 +80,11 @@ class HeaderSection extends StatelessWidget {
 }
 
 void downloadFile(String url) {
-  html.AnchorElement anchorElement = new html.AnchorElement(href: url);
-  anchorElement.download = url;
-  anchorElement.click();
+  if (kIsWeb) {
+    // html.AnchorElement anchorElement = new html.AnchorElement(href: url);
+    // anchorElement.download = url;
+    // anchorElement.click();
+  } else {
+    print('download document in the phone');
+  }
 }

@@ -7,6 +7,7 @@ class PersonalCard extends StatefulWidget {
   final String text;
   final String imagePath1;
   final String imagePath2;
+
   PersonalCard({
     @required this.text,
     @required this.imagePath1,
@@ -21,6 +22,8 @@ class _PersonalCardState extends State<PersonalCard> {
   bool isFlipped = false;
   Image image1;
   Image image2;
+  TextStyle textStyle;
+  double width;
 
   @override
   void initState() {
@@ -33,16 +36,15 @@ class _PersonalCardState extends State<PersonalCard> {
   void didChangeDependencies() {
     precacheImage(image1.image, context);
     precacheImage(image2.image, context);
+    textStyle = Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20);
+    width = min(MediaQuery.of(context).size.width - 64, 300);
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle =
-        Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20);
-    final double width = min(MediaQuery.of(context).size.width - 64, 300);
-
     return Container(
+      key: widget.key,
       width: width,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -82,6 +84,7 @@ class _PersonalCardState extends State<PersonalCard> {
                       width: width,
                       height: width,
                       child: Card(
+                        clipBehavior: Clip.antiAlias,
                         shape: CircleBorder(
                           side: BorderSide(
                             color: Theme.of(context).accentColor,

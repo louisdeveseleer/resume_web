@@ -17,12 +17,6 @@ class _HomePageState extends State<HomePage> {
   ScrollController _scrollController;
 
   @override
-  void initState() {
-    _scrollController = ScrollController();
-    super.initState();
-  }
-
-  @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();

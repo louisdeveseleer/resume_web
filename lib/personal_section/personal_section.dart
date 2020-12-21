@@ -3,6 +3,7 @@ import 'package:resume_web_app/personal_section/personal_card.dart';
 import 'package:resume_web_app/theme.dart';
 
 class PersonalSection extends StatelessWidget {
+  final List<GlobalKey> _key = List.generate(4, (index) => GlobalKey());
   final PersonalCard personalCard1 = PersonalCard(
     text: 'Born in Soignies, Belgium',
     imagePath1: 'assets/soignies.jpg',
@@ -52,18 +53,22 @@ class PersonalSection extends StatelessWidget {
                   ? Stack(
                       children: [
                         Align(
+                          key: _key[0],
                           alignment: Alignment(-1, -1),
                           child: personalCard1,
                         ),
                         Align(
+                          key: _key[1],
                           alignment: Alignment(-0.4, 1),
                           child: personalCard2,
                         ),
                         Align(
+                          key: _key[2],
                           alignment: Alignment(0.4, 1),
                           child: personalCard3,
                         ),
                         Align(
+                          key: _key[3],
                           alignment: Alignment(1, -1),
                           child: personalCard4,
                         ),
@@ -73,18 +78,22 @@ class PersonalSection extends StatelessWidget {
                       ? Stack(
                           children: [
                             Align(
+                              key: _key[0],
                               alignment: Alignment(-1, -1),
                               child: personalCard1,
                             ),
                             Align(
+                              key: _key[1],
                               alignment: Alignment(1, -1),
                               child: personalCard2,
                             ),
                             Align(
+                              key: _key[2],
                               alignment: Alignment(-0.8, 1),
                               child: personalCard3,
                             ),
                             Align(
+                              key: _key[3],
                               alignment: Alignment(0.8, 1),
                               child: personalCard4,
                             ),
@@ -93,18 +102,22 @@ class PersonalSection extends StatelessWidget {
                       : Stack(
                           children: [
                             Align(
+                              key: _key[0],
                               alignment: Alignment(-1, -1),
                               child: personalCard1,
                             ),
                             Align(
+                              key: _key[1],
                               alignment: Alignment(1, -0.33),
                               child: personalCard2,
                             ),
                             Align(
+                              key: _key[2],
                               alignment: Alignment(-1, 0.33),
                               child: personalCard3,
                             ),
                             Align(
+                              key: _key[3],
                               alignment: Alignment(1, 1),
                               child: personalCard4,
                             ),

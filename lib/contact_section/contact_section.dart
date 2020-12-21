@@ -1,4 +1,4 @@
-import 'dart:html';
+import 'package:universal_html/html.dart' as html;
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -64,18 +64,18 @@ class ContactBlock extends StatelessWidget {
   });
 
   bool _copyToClipboardHack(String text) {
-    final textarea = new TextAreaElement();
-    document.body.append(textarea);
-    textarea.style.border = '0';
-    textarea.style.margin = '0';
-    textarea.style.padding = '0';
-    textarea.style.opacity = '0';
-    textarea.style.position = 'absolute';
-    textarea.readOnly = true;
-    textarea.value = text;
-    textarea.select();
-    final result = document.execCommand('copy');
-    textarea.remove();
+    final testArea = new html.TextAreaElement();
+    html.document.body.append(testArea);
+    testArea.style.border = '0';
+    testArea.style.margin = '0';
+    testArea.style.padding = '0';
+    testArea.style.opacity = '0';
+    testArea.style.position = 'absolute';
+    testArea.readOnly = true;
+    testArea.value = text;
+    testArea.select();
+    final result = html.document.execCommand('copy');
+    testArea.remove();
     return result;
   }
 

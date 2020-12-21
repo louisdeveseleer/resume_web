@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class PortfolioSubsection extends StatelessWidget {
   PortfolioSubsection({
-    @required this.imagePath,
+    @required this.image,
     @required this.content,
     this.isLeftAligned: true,
   });
 
-  final String imagePath;
+  final Widget image;
   final Widget content;
   final bool isLeftAligned;
 
@@ -39,7 +39,7 @@ class PortfolioSubsection extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 70),
       width: 400,
       constraints: BoxConstraints(maxHeight: 600),
-      child: Image.asset(imagePath),
+      child: image,
     );
   }
 }
