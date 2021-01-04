@@ -107,6 +107,16 @@ class EngineerSection extends StatelessWidget {
                     text:
                         'High Distinction and Prize for Best Master Thesis in Automation.',
                   ),
+                  ExtraLine(
+                    imagePath: 'assets/Tum_logo.gif',
+                    text:
+                        'First year Master at the Technische Universität München (TüM, Germany).',
+                  ),
+                  ExtraLine(
+                    imagePath: 'assets/ufsc.jpg',
+                    text:
+                        'Master thesis at the Universidade Federal de Santa Catarina (UFSC, Brazil).',
+                  ),
                 ],
               ),
               MyTimelineTile(

@@ -17,7 +17,7 @@ class PortfolioSubsection extends StatelessWidget {
       crossAxisAlignment: WrapCrossAlignment.center,
       alignment: WrapAlignment.center,
       verticalDirection:
-          isLeftAligned ? VerticalDirection.down : VerticalDirection.up,
+          isLeftAligned ? VerticalDirection.up : VerticalDirection.down,
       spacing: 100,
       runSpacing: 50,
       children: [

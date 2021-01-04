@@ -1,10 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:dough/dough.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/header_section/bouncing_profile_pic.dart';
 import 'package:resume_web_app/widgets/click_region.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
+import 'dart:html' as html;
 
 class HeaderSection extends StatelessWidget {
   @override
@@ -50,8 +50,10 @@ class HeaderSection extends StatelessWidget {
                     style: Theme.of(context).accentTextTheme.headline5,
                   ),
                   ClickRegion(
-                    onClick: () => downloadFile(
-                        'https://firebasestorage.googleapis.com/v0/b/louisdeveseleerresume.appspot.com/o/CV%20Louis.pdf?alt=media&token=f309ca5a-405c-45c8-ac06-d46f9334c687'),
+                    onClick: () => html.window.open(
+                      'https://firebasestorage.googleapis.com/v0/b/louisdeveseleerresume.appspot.com/o/CV.pdf?alt=media&token=58c78cb8-caa1-44d9-8bf4-addbde21d5ca',
+                      'CV Louis Deveseleer',
+                    ),
                     child: Text(
                       'pdf version',
                       style: Theme.of(context).textTheme.headline6,
@@ -64,27 +66,13 @@ class HeaderSection extends StatelessWidget {
               height: 50,
             ),
             isSmall
-                ? BouncingProfilePic(
-                    // itemPositionsListener: itemPositionsListener,
-                    )
+                ? BouncingProfilePic()
                 : PressableDough(
-                    child: BouncingProfilePic(
-                        // itemPositionsListener: itemPositionsListener,
-                        ),
+                    child: BouncingProfilePic(),
                   ),
           ],
         ),
       ],
     );
-  }
-}
-
-void downloadFile(String url) {
-  if (kIsWeb) {
-    // html.AnchorElement anchorElement = new html.AnchorElement(href: url);
-    // anchorElement.download = url;
-    // anchorElement.click();
-  } else {
-    print('download document in the phone');
   }
 }

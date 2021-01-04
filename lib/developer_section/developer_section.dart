@@ -65,7 +65,6 @@ class DeveloperSection extends StatelessWidget {
               PortfolioSubsection(
                 isLeftAligned: false,
                 image: VideoWidget('https://youtu.be/dmBs_oGOTCY'),
-                // image: Image.asset('assets/screenshot_parq.png'),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -74,10 +73,11 @@ class DeveloperSection extends StatelessWidget {
                       style: titleStyle,
                     ),
                     Linkify(
+                      onOpen: (link) async => launchURL(link.url),
                       textAlign: TextAlign.end,
                       style: textStyle,
                       text:
-                          'The official PAR-Q+ app, a questionnaire made by https://eparmedx.com/ to determine whether you need to consult a medical professional before increasing your physical activity.',
+                          'The official PAR-Q+ app, a questionnaire made by https://eparmedx.com to determine whether you need to consult a medical professional before increasing your physical activity. Multilingual support.',
                     ),
                     SizedBox(
                       height: 16,
@@ -105,7 +105,6 @@ class DeveloperSection extends StatelessWidget {
               ),
               SizedBox(height: 100),
               PortfolioSubsection(
-                // image: Image.asset('assets/screenshot_calistree1.png'),
                 image: VideoWidget('https://youtu.be/VURmTUM20bU'),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,11 +136,9 @@ class DeveloperSection extends StatelessWidget {
               PortfolioSubsection(
                 isLeftAligned: false,
                 image: EasyWebView(
-                    src: 'https://calistree.app/#/',
-                    onLoaded: () {
-                      print('loaded webview');
-                    }),
-                // image: Image.asset('assets/screenshot_parq.png'),
+                  src: 'https://calistree.app/#/',
+                  onLoaded: () {},
+                ),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -155,7 +152,7 @@ class DeveloperSection extends StatelessWidget {
                       textAlign: TextAlign.end,
                     ),
                     Text(
-                      'Try it out! 🡒',
+                      'Try it out! →',
                       style: textStyle,
                       textAlign: TextAlign.end,
                     ),
