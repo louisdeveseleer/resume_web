@@ -36,8 +36,8 @@ class _HomePageState extends State<HomePage> {
         children: [
           HeaderSection(),
           PersonalSection(),
-          EngineerSection(),
           DeveloperSection(),
+          EngineerSection(),
           AthleteSection(),
           ContactSection(),
           FooterSection(),

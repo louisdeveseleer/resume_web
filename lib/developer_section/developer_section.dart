@@ -22,6 +22,18 @@ class DeveloperSection extends StatelessWidget {
 
     return Container(
       width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topRight,
+          end: Alignment.bottomLeft,
+          colors: [
+            Color(0xffe5d5c7),
+            Color(0xffd2b69d),
+            // Color(0xfffac62b),
+            // Color(0xfffd9812),
+          ],
+        ),
+      ),
       child: Center(
         child: Container(
           padding: EdgeInsets.all(16),
@@ -32,10 +44,6 @@ class DeveloperSection extends StatelessWidget {
               SectionTitle(
                 icon: Icons.code,
                 title: 'Developer',
-              ),
-              DeveloperText(),
-              SizedBox(
-                height: 50,
               ),
               Text(
                 'Here are my Flutter projects:',
@@ -152,13 +160,15 @@ class DeveloperSection extends StatelessWidget {
                       textAlign: TextAlign.end,
                     ),
                     Text(
-                      'Try it out! →',
+                      'Try it out!',
                       style: textStyle,
                       textAlign: TextAlign.end,
                     ),
                   ],
                 ),
               ),
+              SizedBox(height: 50),
+              DeveloperText(),
               SizedBox(height: 100),
             ],
           ),

@@ -42,12 +42,12 @@ class HeaderSection extends StatelessWidget {
                   FittedBox(
                     child: Text(
                       'Louis Deveseleer',
-                      style: Theme.of(context).accentTextTheme.headline2,
+                      style: Theme.of(context).accentTextTheme.headline3,
                     ),
                   ),
                   Text(
                     'Welcome to my CV',
-                    style: Theme.of(context).accentTextTheme.headline5,
+                    style: Theme.of(context).accentTextTheme.headline6,
                   ),
                   ClickRegion(
                     onClick: () => html.window.open(

@@ -13,18 +13,18 @@ class EngineerSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Color(0xffccaa8f),
-            Color(0xffbf9573),
-            // Color(0xfffac62b),
-            // Color(0xfffd9812),
-          ],
-        ),
-      ),
+      // decoration: BoxDecoration(
+      //   gradient: LinearGradient(
+      //     begin: Alignment.topRight,
+      //     end: Alignment.bottomLeft,
+      //     colors: [
+      //       Color(0xffccaa8f),
+      //       Color(0xffbf9573),
+      //       // Color(0xfffac62b),
+      //       // Color(0xfffd9812),
+      //     ],
+      //   ),
+      // ),
       child: Center(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16),
