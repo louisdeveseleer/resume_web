@@ -1,5 +1,5 @@
-import 'package:ext_video_player/ext_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class VideoWidget extends StatefulWidget {
   final String url;
@@ -10,37 +10,21 @@ class VideoWidget extends StatefulWidget {
 }
 
 class _VideoWidgetState extends State<VideoWidget> {
-  VideoPlayerController _controller;
+  YoutubePlayerController _controller;
 
   @override
   void initState() {
+    _controller = YoutubePlayerController(initialVideoId: widget.url);
     super.initState();
-    _controller = VideoPlayerController.network(widget.url)
-      ..addListener(() {
-        setState(() {});
-      })
-      ..setLooping(true)
-      ..initialize();
-    // ..initialize().then((_) {
-    //   // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-    //   setState(() {});
-    // });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-              VideoPlayer(_controller),
-              _ControlsOverlay(controller: _controller),
-              VideoProgressIndicator(_controller, allowScrubbing: true),
-            ],
-          ),
+        child: YoutubePlayerIFrame(
+          controller: _controller,
+          aspectRatio: 9 / 16,
         ),
       ),
     );
@@ -92,42 +76,6 @@ class _VideoWidgetState extends State<VideoWidget> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
-  }
-}
-
-class _ControlsOverlay extends StatelessWidget {
-  const _ControlsOverlay({Key key, @required this.controller})
-      : super(key: key);
-
-  final VideoPlayerController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        AnimatedSwitcher(
-          duration: Duration(milliseconds: 50),
-          reverseDuration: Duration(milliseconds: 200),
-          child: controller.value.isPlaying
-              ? SizedBox.shrink()
-              : Container(
-                  color: Colors.black26,
-                  child: Center(
-                    child: Icon(
-                      Icons.play_arrow,
-                      color: Colors.white,
-                      size: 100.0,
-                    ),
-                  ),
-                ),
-        ),
-        GestureDetector(
-          onTap: () {
-            controller.value.isPlaying ? controller.pause() : controller.play();
-          },
-        ),
-      ],
-    );
+    _controller.close();
   }
 }

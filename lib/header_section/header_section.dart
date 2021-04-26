@@ -1,10 +1,11 @@
 import 'package:dough/dough.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/header_section/bouncing_profile_pic.dart';
 import 'package:resume_web_app/widgets/click_region.dart';
+import 'package:resume_web_app/widgets/launch_url.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
-import 'dart:html' as html;
 
 class HeaderSection extends StatelessWidget {
   @override
@@ -46,14 +47,14 @@ class HeaderSection extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Welcome to my CV',
+                    'Mobile app developer',
                     style: Theme.of(context).accentTextTheme.headline6,
                   ),
                   ClickRegion(
-                    onClick: () => html.window.open(
-                      'https://firebasestorage.googleapis.com/v0/b/louisdeveseleerresume.appspot.com/o/CV.pdf?alt=media&token=58c78cb8-caa1-44d9-8bf4-addbde21d5ca',
-                      'CV Louis Deveseleer',
-                    ),
+                    onClick: () async {
+                      String downloadUrl = await getCVDownloadUrl();
+                      launchURL(downloadUrl);
+                    },
                     child: Text(
                       'pdf version',
                       style: Theme.of(context).textTheme.headline6,
@@ -75,4 +76,12 @@ class HeaderSection extends StatelessWidget {
       ],
     );
   }
+}
+
+Future<String> getCVDownloadUrl() async {
+  var ref = FirebaseStorage.instance
+      .ref()
+      .child('CV Louis Deveseleer - Flutter developper.pdf');
+  String url = (await ref.getDownloadURL()).toString();
+  return url;
 }
