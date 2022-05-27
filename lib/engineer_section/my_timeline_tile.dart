@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:resume_web_app/widgets/image_dialog.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
 import 'package:transparent_image/transparent_image.dart';

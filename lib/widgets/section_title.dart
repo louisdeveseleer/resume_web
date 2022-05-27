@@ -17,12 +17,9 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = darkTheme
-        ? Theme.of(context).accentTextTheme
-        : Theme.of(context).textTheme;
+    final textTheme = Theme.of(context).textTheme;
     final isSmall = ResponsiveWidget.isSmallScreen(context);
-    final TextStyle textStyle =
-        isSmall ? textTheme.headline4 : textTheme.headline3;
+    final textStyle = isSmall ? textTheme.headline4 : textTheme.headline3;
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: min(100, max(0, MediaQuery.of(context).size.height / 10)),

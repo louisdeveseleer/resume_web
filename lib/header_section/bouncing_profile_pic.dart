@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class BouncingProfilePic extends StatefulWidget {
   @override
@@ -16,11 +15,9 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
   @override
   void initState() {
     louis = Image.asset('assets/louis.jpg');
-    _appearanceController =
-        AnimationController(duration: Duration(milliseconds: 1200), vsync: this)
-          ..reset();
-    _appearanceAnimation = CurvedAnimation(
-        parent: _appearanceController, curve: Curves.elasticOut);
+    _appearanceController = AnimationController(duration: Duration(milliseconds: 1200), vsync: this)
+      ..reset();
+    _appearanceAnimation = CurvedAnimation(parent: _appearanceController, curve: Curves.elasticOut);
     _appearanceController.forward();
     super.initState();
   }
@@ -34,8 +31,7 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(louis.image, context)
-        .whenComplete(() => louisIsLoaded = true);
+    precacheImage(louis.image, context).whenComplete(() => louisIsLoaded = true);
   }
 
   @override
@@ -50,7 +46,7 @@ class _BouncingProfilePicState extends State<BouncingProfilePic>
           margin: EdgeInsets.all(16),
           shape: CircleBorder(
             side: BorderSide(
-              color: Theme.of(context).accentColor,
+              color: Theme.of(context).colorScheme.primary,
               width: 5,
             ),
           ),

@@ -11,17 +11,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  carousel_slider: ^3.0.0
+  carousel_slider: ^4.1.1
+  chewie: ^1.0.0
   cupertino_icons: ^1.0.2
   dough: ^1.0.1
   draggable_scrollbar: ^0.1.0
-  firebase_storage: ^8.0.4
+  firebase_core: ^1.0.4
+  firebase_storage: ^10.2.17
   flutter_linkify: ^5.0.2
-  google_fonts: ^2.0.0
+  google_fonts: ^3.0.1
   transparent_image: ^2.0.0
   universal_html: ^2.0.8
   url_launcher: ^6.0.3
-  youtube_player_iframe: ^2.0.0
+  video_player: ^2.1.1
+  youtube_plyr_iframe: ^2.0.3
 
 dev_dependencies:
   flutter_test:

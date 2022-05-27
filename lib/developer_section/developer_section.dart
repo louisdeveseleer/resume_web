@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:resume_web_app/developer_section/developer_text.dart';
 import 'package:resume_web_app/developer_section/potfolio_subsection.dart';
-import 'package:resume_web_app/developer_section/video_widget.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/click_region.dart';
 import 'package:resume_web_app/widgets/launch_url.dart';
@@ -94,7 +93,26 @@ class DeveloperSection extends StatelessWidget {
               SizedBox(height: 100),
               PortfolioSubsection(
                 isLeftAligned: true,
-                image: VideoWidget('dmBs_oGOTCY'),
+                image: InkWell(
+                  onTap: () {
+                    launchURL('https://youtu.be/dmBs_oGOTCY');
+                  },
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Image.asset('assets/screenshot_parq.png'),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                          size: 70,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -153,7 +171,26 @@ class DeveloperSection extends StatelessWidget {
               ),
               SizedBox(height: 100),
               PortfolioSubsection(
-                image: VideoWidget('VURmTUM20bU'),
+                image: InkWell(
+                  onTap: () {
+                    launchURL('https://youtu.be/VURmTUM20bU');
+                  },
+                  child: Stack(
+                    children: [
+                      Center(
+                          child:
+                              Image.asset('assets/screenshot_calistree1.png')),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                          size: 70,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

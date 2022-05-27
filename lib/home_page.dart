@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/athlete_section/athlete_section.dart';
 import 'package:resume_web_app/contact_section/contact_section.dart';
 import 'package:resume_web_app/developer_section/developer_section.dart';
@@ -31,17 +30,25 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Scrollbar(
+        thumbVisibility: true,
+        trackVisibility: true,
         controller: _scrollController,
-        children: [
-          HeaderSection(),
-          PersonalSection(),
-          DeveloperSection(),
-          EngineerSection(),
-          AthleteSection(),
-          ContactSection(),
-          FooterSection(),
-        ],
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              HeaderSection(),
+              PersonalSection(),
+              DeveloperSection(),
+              EngineerSection(),
+              AthleteSection(),
+              ContactSection(),
+              FooterSection(),
+            ],
+          ),
+        ),
       ),
     );
   }

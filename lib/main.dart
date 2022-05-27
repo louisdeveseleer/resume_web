@@ -1,12 +1,15 @@
 // import 'dart:html';
 // import 'package:device_preview/device_preview.dart';
 // import 'package:flutter/foundation.dart';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/home_page.dart';
 import 'package:resume_web_app/theme.dart';
 
-void main() {
+void main() async {
   // querySelector("#container").remove();
+  await Firebase.initializeApp();
   runApp(MyApp());
   // runApp(
   //   DevicePreview(

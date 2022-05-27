@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/click_region.dart';
 import 'package:resume_web_app/widgets/launch_url.dart';
@@ -7,7 +6,7 @@ import 'package:resume_web_app/widgets/launch_url.dart';
 class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).accentTextTheme.bodyText2;
+    final TextStyle textStyle = Theme.of(context).textTheme.bodyMedium;
     return Container(
       padding: EdgeInsets.all(16),
       width: MediaQuery.of(context).size.width,
@@ -25,8 +24,7 @@ class FooterSection extends StatelessWidget {
               ),
               _buildItem(
                 textStyle,
-                () =>
-                    launchURL('https://github.com/louisdeveseleer/resume_web'),
+                () => launchURL('https://github.com/louisdeveseleer/resume_web'),
                 'Source code',
               ),
               _buildItem(
@@ -34,8 +32,8 @@ class FooterSection extends StatelessWidget {
                 () => showAboutDialog(
                   context: context,
                   applicationName: 'Louis Deveseleer CV',
-                  applicationIcon: Container(
-                      height: 30, child: Image.asset('web/icons/Icon-192.png')),
+                  applicationIcon:
+                      Container(height: 30, child: Image.asset('web/icons/Icon-192.png')),
                 ),
                 'About',
               ),

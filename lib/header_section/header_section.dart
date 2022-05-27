@@ -1,7 +1,6 @@
 import 'package:dough/dough.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:resume_web_app/header_section/bouncing_profile_pic.dart';
 import 'package:resume_web_app/widgets/click_region.dart';
 import 'package:resume_web_app/widgets/launch_url.dart';
@@ -28,50 +27,54 @@ class HeaderSection extends StatelessWidget {
             ),
           ),
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 110,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FittedBox(
-                    child: Text(
-                      'Louis Deveseleer',
-                      style: Theme.of(context).accentTextTheme.headline3,
-                    ),
-                  ),
-                  Text(
-                    'Mobile app developer',
-                    style: Theme.of(context).accentTextTheme.headline6,
-                  ),
-                  ClickRegion(
-                    onClick: () async {
-                      String downloadUrl = await getCVDownloadUrl();
-                      launchURL(downloadUrl);
-                    },
-                    child: Text(
-                      'pdf version',
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ),
-                ],
+        Container(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 110,
               ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            isSmall
-                ? BouncingProfilePic()
-                : PressableDough(
-                    child: BouncingProfilePic(),
-                  ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FittedBox(
+                      child: Text(
+                        'Louis Deveseleer',
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                    ),
+                    Text(
+                      'Mobile app developer (Flutter)',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    ClickRegion(
+                      onClick: () async {
+                        String downloadUrl = await getCVDownloadUrl();
+                        print(downloadUrl);
+                        launchURL(downloadUrl);
+                      },
+                      child: Text(
+                        'pdf version',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              isSmall
+                  ? BouncingProfilePic()
+                  : PressableDough(
+                      child: BouncingProfilePic(),
+                    ),
+            ],
+          ),
         ),
       ],
     );
@@ -81,7 +84,7 @@ class HeaderSection extends StatelessWidget {
 Future<String> getCVDownloadUrl() async {
   var ref = FirebaseStorage.instance
       .ref()
-      .child('CV Louis Deveseleer - Flutter developper.pdf');
+      .child('CV Louis Deveseleer - Flutter developper June 2022.pdf');
   String url = (await ref.getDownloadURL()).toString();
   return url;
 }

@@ -1,6 +1,5 @@
 import 'package:universal_html/html.dart' as html;
 import 'dart:math';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';

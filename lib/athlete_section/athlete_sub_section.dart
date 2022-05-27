@@ -73,7 +73,7 @@ class AthleteSubSection extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               title,
-              style: Theme.of(context).accentTextTheme.headline4,
+              style: Theme.of(context).textTheme.headlineLarge,
               textAlign: leftAligned ? TextAlign.start : TextAlign.end,
             ),
           ),
@@ -81,7 +81,7 @@ class AthleteSubSection extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               subtitle,
-              style: Theme.of(context).accentTextTheme.headline5,
+              style: Theme.of(context).textTheme.headlineLarge,
               textAlign: leftAligned ? TextAlign.start : TextAlign.end,
             ),
           ),
@@ -89,7 +89,7 @@ class AthleteSubSection extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               text,
-              style: Theme.of(context).accentTextTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyMedium,
               textAlign: leftAligned ? TextAlign.start : TextAlign.end,
             ),
           ),

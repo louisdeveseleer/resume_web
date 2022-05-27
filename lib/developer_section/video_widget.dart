@@ -1,5 +1,7 @@
+import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:video_player/video_player.dart';
+import 'package:youtube_plyr_iframe/youtube_plyr_iframe.dart';
 
 class VideoWidget extends StatefulWidget {
   final String url;
@@ -28,54 +30,85 @@ class _VideoWidgetState extends State<VideoWidget> {
         ),
       ),
     );
-
-    // return _controller.value.initialized
-    //     ? Column(
-    //         children: [
-    //           Expanded(
-    //             child: Container(
-    //                 alignment: Alignment.center,
-    //                 child: AspectRatio(
-    //                   aspectRatio: _controller.value.aspectRatio,
-    //                   child: VideoPlayer(_controller),
-    //                 )),
-    //           ),
-    //           SizedBox(height: 8),
-    //           FlatButton(
-    //               onPressed: () {
-    //                 setState(() {
-    //                   _controller.value.isPlaying
-    //                       ? _controller.pause()
-    //                       : _controller.play();
-    //                 });
-    //               },
-    //               child: _controller.value.isPlaying
-    //                   ? Row(
-    //                       mainAxisAlignment: MainAxisAlignment.center,
-    //                       children: [
-    //                         Text('Pause'),
-    //                         SizedBox(width: 8),
-    //                         Icon(Icons.pause),
-    //                       ],
-    //                     )
-    //                   : Row(
-    //                       mainAxisAlignment: MainAxisAlignment.center,
-    //                       children: [
-    //                         Text('Play'),
-    //                         SizedBox(width: 8),
-    //                         Icon(Icons.play_arrow),
-    //                       ],
-    //                     )),
-    //         ],
-    //       )
-    //     : Center(
-    //         child: CircularProgressIndicator(),
-    //       );
   }
 
   @override
   void dispose() {
     super.dispose();
     _controller.close();
+  }
+}
+
+class VideoPlayer extends StatefulWidget {
+  final String url;
+  final Widget backgroundPlaceholder;
+  const VideoPlayer({
+    @required this.url,
+    this.backgroundPlaceholder,
+  });
+
+  @override
+  _VideoPlayerState createState() => _VideoPlayerState();
+}
+
+class _VideoPlayerState extends State<VideoPlayer> {
+  VideoPlayerController videoPlayerController;
+  ChewieController chewieController;
+
+  Future<void> initializePlayer() async {
+    // videoPlayerController = VideoPlayerController.file(file);
+    videoPlayerController = VideoPlayerController.network(widget.url);
+    await videoPlayerController.initialize();
+    chewieController = ChewieController(
+      videoPlayerController: videoPlayerController,
+      autoPlay: false,
+      looping: false,
+      allowMuting: false,
+      showControlsOnInitialize: false,
+    );
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    initializePlayer();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    videoPlayerController.dispose();
+    chewieController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (chewieController != null &&
+        chewieController.videoPlayerController.value.isInitialized) {
+      return Chewie(controller: chewieController);
+    } else {
+      return Stack(
+        fit: StackFit.expand,
+        children: [
+          widget.backgroundPlaceholder,
+          Positioned(
+            top: 0,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LinearProgressIndicator(),
+                SizedBox(height: 8),
+                Text(
+                  'Downloading video...',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
   }
 }

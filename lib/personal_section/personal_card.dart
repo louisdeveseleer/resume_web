@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-import 'package:flutter/rendering.dart';
-
 class PersonalCard extends StatefulWidget {
   final String text;
   final String imagePath1;
@@ -87,7 +85,7 @@ class _PersonalCardState extends State<PersonalCard> {
                         clipBehavior: Clip.antiAlias,
                         shape: CircleBorder(
                           side: BorderSide(
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.primary,
                             width: 2,
                           ),
                         ),
