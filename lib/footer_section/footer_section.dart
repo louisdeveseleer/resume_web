@@ -6,7 +6,8 @@ import 'package:resume_web_app/widgets/launch_url.dart';
 class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.bodyMedium;
+    final TextStyle textStyle =
+        Theme.of(context).textTheme.bodyMedium.copyWith(color: Colors.white);
     return Container(
       padding: EdgeInsets.all(16),
       width: MediaQuery.of(context).size.width,

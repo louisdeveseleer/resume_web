@@ -34,12 +34,13 @@ class AthleteSection extends StatelessWidget {
                     darkTheme: true,
                   ),
                   Text(
-                    '❝ In order for man to succeed in life, God provided him with two means, education and physical activity. Not separately, one for the soul and the other for the body, but for the two together. With these two means, man can attain perfection. ❞',
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    'In order for man to succeed in life, God provided him with two means, education and physical activity. Not separately, one for the soul and the other for the body, but for the two together. With these two means, man can attain perfection.',
+                    style: Theme.of(context).textTheme.bodyMedium.copyWith(color: Colors.white70),
                   ),
                   Text(
                     '- Plato -',
-                    style: Theme.of(context).textTheme.headlineMedium,
+                    style:
+                        Theme.of(context).textTheme.headlineMedium.copyWith(color: Colors.white70),
                     textAlign: TextAlign.end,
                   ),
                   SizedBox(

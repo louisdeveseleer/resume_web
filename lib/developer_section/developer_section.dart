@@ -12,10 +12,8 @@ class DeveloperSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyle = Theme.of(context).textTheme.bodyText1;
-    final TextStyle titleStyle = Theme.of(context)
-        .textTheme
-        .headline4
-        .copyWith(color: Color(0xff595e52));
+    final TextStyle titleStyle =
+        Theme.of(context).textTheme.headline4.copyWith(color: Color(0xff595e52));
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -79,8 +77,8 @@ class DeveloperSection extends StatelessWidget {
                         ),
                         Expanded(
                           child: ClickRegion(
-                            onClick: () => launchURL(
-                                'https://apps.apple.com/us/app/calistree/id1558561315'),
+                            onClick: () =>
+                                launchURL('https://apps.apple.com/us/app/calistree/id1558561315'),
                             child: Image.asset('assets/app-store_badge.png'),
                           ),
                         ),
@@ -89,7 +87,7 @@ class DeveloperSection extends StatelessWidget {
                   ],
                 ),
               ),
-                SizedBox(height: 100),
+              SizedBox(height: 100),
               PortfolioSubsection(
                 isLeftAligned: true,
                 image: InkWell(
@@ -140,20 +138,34 @@ class DeveloperSection extends StatelessWidget {
                         ),
                         Expanded(
                           child: ClickRegion(
-                            onClick: () => launchURL(
-                                'https://apps.apple.com/app/apple-store/id1592004181'),
+                            onClick: () =>
+                                launchURL('https://apps.apple.com/app/apple-store/id1592004181'),
                             child: Image.asset('assets/app-store_badge.png'),
                           ),
                         ),
-                        Expanded(child: ElevatedButton(onPressed: ()=>launchURL('https://app.rellasocial.com/'), child: Text('Web app'),),),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: ElevatedButton(
+                              onPressed: () => launchURL(
+                                'https://app.rellasocial.com/',
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.black,
+                                fixedSize: Size.fromHeight(42),
+                              ),
+                              child: Text('Web app'),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ],
                 ),
               ),
-                SizedBox(height: 100),
+              SizedBox(height: 100),
               PortfolioSubsection(
-                isLeftAligned: true,
+                isLeftAligned: false,
                 image: InkWell(
                   onTap: () {
                     launchURL('http://1vision.media/');
@@ -245,8 +257,8 @@ class DeveloperSection extends StatelessWidget {
                         ),
                         Expanded(
                           child: ClickRegion(
-                            onClick: () => launchURL(
-                                'https://apps.apple.com/us/app/par-q/id1538862965'),
+                            onClick: () =>
+                                launchURL('https://apps.apple.com/us/app/par-q/id1538862965'),
                             child: Image.asset('assets/app-store_badge.png'),
                           ),
                         ),
@@ -281,9 +293,7 @@ class DeveloperSection extends StatelessWidget {
                   },
                   child: Stack(
                     children: [
-                      Center(
-                          child:
-                              Image.asset('assets/screenshot_calistree1.png')),
+                      Center(child: Image.asset('assets/screenshot_calistree1.png')),
                       Align(
                         alignment: Alignment.center,
                         child: Icon(
