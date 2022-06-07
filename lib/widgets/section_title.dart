@@ -18,8 +18,11 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final color = darkTheme ? Colors.white60 : Colors.black54;
     final isSmall = ResponsiveWidget.isSmallScreen(context);
-    final textStyle = isSmall ? textTheme.headline4 : textTheme.headline3;
+    final textStyle = isSmall
+        ? textTheme.headline4.copyWith(color: color)
+        : textTheme.headline3.copyWith(color: color);
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: min(100, max(0, MediaQuery.of(context).size.height / 10)),

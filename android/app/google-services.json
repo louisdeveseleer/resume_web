@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "512265843382",
+    "firebase_url": "https://louisdeveseleerresume.firebaseio.com",
+    "project_id": "louisdeveseleerresume",
+    "storage_bucket": "louisdeveseleerresume.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512265843382:android:60517e24a165e191502c17",
+        "android_client_info": {
+          "package_name": "com.louisdeveseleer.resume_web_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512265843382-t721jlphhqsv5pi6r7vbbotrs33osmal.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfFlY4vGNBP-NVUgVcVMYo-Kf3JTIlXTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512265843382-t721jlphhqsv5pi6r7vbbotrs33osmal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

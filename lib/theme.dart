@@ -10,11 +10,16 @@ class Styles {
       cardTheme: CardTheme(
         elevation: 4.0,
       ),
-      colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: Colors.indigo,
-        accentColor: Color(0xffb28057),
-        primaryColorDark: Color(0xff595362),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Color(0xffb28057),
+        primary: Color(0xffb28057),
       ),
+      // colorScheme: ColorScheme.fromSwatch(
+      //   primarySwatch: Color(0xffb28057),
+
+      //   accentColor: Color(0xffb28057),
+      //   primaryColorDark: Color(0xff595362),
+      // ),
       textTheme: Typography.blackMountainView.copyWith(
         headlineLarge: GoogleFonts.poppins(),
         headlineMedium: GoogleFonts.poppins(),

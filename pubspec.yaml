@@ -16,7 +16,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dough: ^1.0.1
   draggable_scrollbar: ^0.1.0
-  firebase_core: ^1.0.4
+  firebase_core: ^1.17.1
   firebase_storage: ^10.2.17
   flutter_linkify: ^5.0.2
   google_fonts: ^3.0.1
@@ -24,7 +24,6 @@ dependencies:
   universal_html: ^2.0.8
   url_launcher: ^6.0.3
   video_player: ^2.1.1
-  youtube_plyr_iframe: ^2.0.3
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:resume_web_app/developer_section/developer_text.dart';
 import 'package:resume_web_app/developer_section/potfolio_subsection.dart';
 import 'package:resume_web_app/theme.dart';
 import 'package:resume_web_app/widgets/click_region.dart';
@@ -62,7 +61,7 @@ class DeveloperSection extends StatelessWidget {
                       style: titleStyle,
                     ),
                     Text(
-                      'Most complete library of Calisthenics exercises. Technical features: advanced authentication, complex animations, localization, deep links, cloud functions, notifications.',
+                      'Considered by many as the most advanced calisthenics app available. Building this entirely by myself taught me a lot about how to create, develop and grow an app-based business.',
                       style: textStyle,
                       textAlign: TextAlign.end,
                     ),
@@ -86,6 +85,111 @@ class DeveloperSection extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                  ],
+                ),
+              ),
+                SizedBox(height: 100),
+              PortfolioSubsection(
+                isLeftAligned: true,
+                image: InkWell(
+                  onTap: () {
+                    launchURL('https://getrella.com/');
+                  },
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Image.asset('assets/rella-screenshot.jpg'),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                          size: 70,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Rella',
+                      style: titleStyle,
+                    ),
+                    Linkify(
+                      onOpen: (link) async => launchURL(link.url),
+                      textAlign: TextAlign.start,
+                      style: textStyle,
+                      text:
+                          'As the only front-end dev, I helped this wonderful team build the Rella-app from the ground up.',
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ClickRegion(
+                            onClick: () => launchURL(
+                                'https://play.google.com/store/apps/details?id=com.rellasocial.mobile'),
+                            child: Image.asset('assets/google-play-badge.png'),
+                          ),
+                        ),
+                        Expanded(
+                          child: ClickRegion(
+                            onClick: () => launchURL(
+                                'https://apps.apple.com/app/apple-store/id1592004181'),
+                            child: Image.asset('assets/app-store_badge.png'),
+                          ),
+                        ),
+                        Expanded(child: ElevatedButton(onPressed: ()=>launchURL('https://app.rellasocial.com/'), child: Text('Web app'),),),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+                SizedBox(height: 100),
+              PortfolioSubsection(
+                isLeftAligned: true,
+                image: InkWell(
+                  onTap: () {
+                    launchURL('http://1vision.media/');
+                  },
+                  child: Stack(
+                    children: [
+                      Center(
+                        child: Image.asset('assets/1vision.jpg'),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.play_arrow,
+                          color: Colors.white,
+                          size: 70,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                content: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '1Vision Media',
+                      style: titleStyle,
+                    ),
+                    Linkify(
+                      onOpen: (link) async => launchURL(link.url),
+                      textAlign: TextAlign.start,
+                      style: textStyle,
+                      text:
+                          'Suite of apps used to enhance live game experiences in high schools. I helped this team reach their deadlines by working on several of their cross-platform apps.',
+                    ),
+                    SizedBox(
+                      height: 16,
                     ),
                   ],
                 ),
@@ -125,7 +229,7 @@ class DeveloperSection extends StatelessWidget {
                       textAlign: TextAlign.start,
                       style: textStyle,
                       text:
-                          'The official PAR-Q+ app, a questionnaire made by https://eparmedx.com to determine whether you need to consult a medical professional before increasing your physical activity. Multilingual support.',
+                          'The official PAR-Q+ app, a questionnaire made by https://eparmedx.com to determine whether you need to consult a medical professional before increasing your physical activity.',
                     ),
                     SizedBox(
                       height: 16,
@@ -195,7 +299,7 @@ class DeveloperSection extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Workout log',
+                      'Workout log (my first app)',
                       style: titleStyle,
                     ),
                     Text(
@@ -217,8 +321,8 @@ class DeveloperSection extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 50),
-              DeveloperText(),
+              // SizedBox(height: 50),
+              // DeveloperText(),
               SizedBox(height: 100),
             ],
           ),

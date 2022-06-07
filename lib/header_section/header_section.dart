@@ -44,12 +44,16 @@ class HeaderSection extends StatelessWidget {
                     FittedBox(
                       child: Text(
                         'Louis Deveseleer',
-                        style: Theme.of(context).textTheme.displayMedium,
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium
+                            .copyWith(color: Colors.white60),
                       ),
                     ),
                     Text(
                       'Mobile app developer (Flutter)',
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style:
+                          Theme.of(context).textTheme.headlineSmall.copyWith(color: Colors.white60),
                     ),
                     ClickRegion(
                       onClick: () async {

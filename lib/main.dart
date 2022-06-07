@@ -9,6 +9,7 @@ import 'package:resume_web_app/theme.dart';
 
 void main() async {
   // querySelector("#container").remove();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
   // runApp(
