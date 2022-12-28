@@ -7,21 +7,21 @@ class ExtraLine {
   String imagePath;
   String text;
   ExtraLine({
-    @required this.imagePath,
-    @required this.text,
+    required this.imagePath,
+    required this.text,
   });
 }
 
 class MyTimelineTile extends StatefulWidget {
   const MyTimelineTile({
-    Key key,
-    @required this.date,
-    @required this.title,
-    @required this.subtitle,
+    super.key,
+    required this.date,
+    required this.title,
+    required this.subtitle,
     this.isFirst: false,
     this.isLast: false,
-    @required this.extras,
-  }) : super(key: key);
+    required this.extras,
+  });
 
   final String date;
   final String title;
@@ -36,9 +36,9 @@ class MyTimelineTile extends StatefulWidget {
 
 class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStateMixin {
   bool _isExpanded = false;
-  AnimationController _controller;
-  Animation<double> _iconTurns;
-  Animation<double> _heightFactor;
+  late final AnimationController _controller;
+  late final Animation<double> _iconTurns;
+  late final Animation<double> _heightFactor;
   bool _isHovering = false;
 
   @override
@@ -144,7 +144,7 @@ class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStat
                           padding: EdgeInsets.only(right: 32),
                           child: Text(
                             widget.date,
-                            style: Theme.of(context).textTheme.bodyText1.copyWith(
+                            style: Theme.of(context).textTheme.bodyText1?.copyWith(
                                   fontStyle: FontStyle.italic,
                                 ),
                             textAlign: TextAlign.end,
@@ -214,7 +214,7 @@ class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStat
                                             ? Text(
                                                 widget.date,
                                                 style:
-                                                    Theme.of(context).textTheme.bodyText1.copyWith(
+                                                    Theme.of(context).textTheme.bodyText1?.copyWith(
                                                           fontStyle: FontStyle.italic,
                                                         ),
                                               )

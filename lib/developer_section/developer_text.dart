@@ -6,10 +6,10 @@ class DeveloperText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isSmall = ResponsiveWidget.isSmallScreen(context);
-    final double padding = isSmall ? 16 : 32;
-    final TextStyle _textStyle = Theme.of(context).textTheme.bodyText1;
-    final TextStyle _accentTextStyle = _textStyle.copyWith(
+    final isSmall = ResponsiveWidget.isSmallScreen(context);
+    final padding = isSmall ? 16.0 : 32.0;
+    final _textStyle = Theme.of(context).textTheme.bodyText1;
+    final _accentTextStyle = _textStyle?.copyWith(
       color: Color(0xff748A4D),
       fontWeight: FontWeight.bold,
     );
@@ -46,12 +46,10 @@ class DeveloperText extends StatelessWidget {
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
-                    text: 'At 17, I wrote several programs in my calculator (',
-                    style: _textStyle),
+                    text: 'At 17, I wrote several programs in my calculator (', style: _textStyle),
                 TextSpan(text: 'Casio-BASIC', style: _accentTextStyle),
                 TextSpan(
-                    text:
-                        ') that were the most advanced my teacher had seen so far.',
+                    text: ') that were the most advanced my teacher had seen so far.',
                     style: _textStyle),
               ],
             ),
@@ -70,9 +68,7 @@ class DeveloperText extends StatelessWidget {
           RichText(
             text: TextSpan(
               children: <TextSpan>[
-                TextSpan(
-                    text: 'During a research intern job, I used ',
-                    style: _textStyle),
+                TextSpan(text: 'During a research intern job, I used ', style: _textStyle),
                 TextSpan(text: 'C++', style: _accentTextStyle),
                 TextSpan(text: ' and ', style: _textStyle),
                 TextSpan(text: 'image recognition', style: _accentTextStyle),
@@ -84,12 +80,9 @@ class DeveloperText extends StatelessWidget {
           RichText(
             text: TextSpan(
               children: <TextSpan>[
-                TextSpan(
-                    text: 'My thesis work made heavy use of ',
-                    style: _textStyle),
+                TextSpan(text: 'My thesis work made heavy use of ', style: _textStyle),
                 TextSpan(text: 'ROS (C++)', style: _accentTextStyle),
-                TextSpan(
-                    text: ' to control 4-wheeled robots.', style: _textStyle),
+                TextSpan(text: ' to control 4-wheeled robots.', style: _textStyle),
               ],
             ),
           ),
@@ -97,12 +90,10 @@ class DeveloperText extends StatelessWidget {
           RichText(
             text: TextSpan(
               children: <TextSpan>[
-                TextSpan(
-                    text: 'During another project, I used ', style: _textStyle),
+                TextSpan(text: 'During another project, I used ', style: _textStyle),
                 TextSpan(text: 'C#', style: _accentTextStyle),
                 TextSpan(
-                    text:
-                        ' to control a Kinect Camera to calibrate a robotic arm.',
+                    text: ' to control a Kinect Camera to calibrate a robotic arm.',
                     style: _textStyle),
               ],
             ),
@@ -114,8 +105,7 @@ class DeveloperText extends StatelessWidget {
                 TextSpan(text: 'I also programmed ', style: _textStyle),
                 TextSpan(text: 'microcontrollers', style: _accentTextStyle),
                 TextSpan(
-                    text: ' (Arduino) to control pneumatic valves and robots.',
-                    style: _textStyle),
+                    text: ' (Arduino) to control pneumatic valves and robots.', style: _textStyle),
               ],
             ),
           ),

@@ -47,13 +47,15 @@ class HeaderSection extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium
-                            .copyWith(color: Colors.white60),
+                            ?.copyWith(color: Colors.white60),
                       ),
                     ),
                     Text(
                       'Mobile app developer (Flutter)',
-                      style:
-                          Theme.of(context).textTheme.headlineSmall.copyWith(color: Colors.white60),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall
+                          ?.copyWith(color: Colors.white60),
                     ),
                     ClickRegion(
                       onClick: () async {

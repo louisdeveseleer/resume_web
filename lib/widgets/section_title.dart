@@ -5,11 +5,11 @@ import 'package:resume_web_app/widgets/responsive_widget.dart';
 
 class SectionTitle extends StatelessWidget {
   const SectionTitle({
-    @required this.icon,
-    @required this.title,
+    required this.icon,
+    required this.title,
     this.darkTheme = false,
-    Key key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final IconData icon;
   final String title;
@@ -21,8 +21,8 @@ class SectionTitle extends StatelessWidget {
     final color = darkTheme ? Colors.white60 : Colors.black54;
     final isSmall = ResponsiveWidget.isSmallScreen(context);
     final textStyle = isSmall
-        ? textTheme.headline4.copyWith(color: color)
-        : textTheme.headline3.copyWith(color: color);
+        ? textTheme.headline4?.copyWith(color: color)
+        : textTheme.headline3?.copyWith(color: color);
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: min(100, max(0, MediaQuery.of(context).size.height / 10)),
@@ -32,8 +32,8 @@ class SectionTitle extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: textStyle.color,
-            size: textStyle.fontSize,
+            color: textStyle?.color,
+            size: textStyle?.fontSize,
           ),
           SizedBox(width: isSmall ? 32 : 64),
           Text(

@@ -5,8 +5,8 @@ import 'package:resume_web_app/widgets/section_title.dart';
 
 class EngineerSection extends StatelessWidget {
   const EngineerSection({
-    Key key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +54,7 @@ class EngineerSection extends StatelessWidget {
                       text: 'Improvement of assembly and packaging processes.'),
                   ExtraLine(
                       imagePath: 'assets/Feton-Customers-Worldwide.jpg',
-                      text:
-                          'Development of new markets and management of customer service.'),
+                      text: 'Development of new markets and management of customer service.'),
                   ExtraLine(
                       imagePath: 'assets/Feton-logo.jpg',
                       text: 'Products pricing and sales analysis.'),
@@ -64,8 +63,7 @@ class EngineerSection extends StatelessWidget {
               MyTimelineTile(
                 date: '2015 - 2016',
                 title: 'Energy Sector Coordination',
-                subtitle:
-                    'Ministry of Infrastructure, Energy Department, Rwanda',
+                subtitle: 'Ministry of Infrastructure, Energy Department, Rwanda',
                 extras: [
                   ExtraLine(
                     imagePath: 'assets/enabel.png',
@@ -90,26 +88,22 @@ class EngineerSection extends StatelessWidget {
                 extras: [
                   ExtraLine(
                     imagePath: 'assets/vesuvius-sem.jpg',
-                    text:
-                        'Design and testing of machines for steel continuous casting.',
+                    text: 'Design and testing of machines for steel continuous casting.',
                   ),
                 ],
               ),
               MyTimelineTile(
                 date: '2011 - 2013',
-                title:
-                    'Master of Science in Mechanical Engineering and Automation',
+                title: 'Master of Science in Mechanical Engineering and Automation',
                 subtitle: 'FPMs, Umons, Belgium | TÜM, Germany | UFSC, Brazil',
                 extras: [
                   ExtraLine(
                     imagePath: 'assets/MasterDiplome.jpg',
-                    text:
-                        'High Distinction and Prize for Best Master Thesis in Automation.',
+                    text: 'High Distinction and Prize for Best Master Thesis in Automation.',
                   ),
                   ExtraLine(
                     imagePath: 'assets/Tum_logo.gif',
-                    text:
-                        'First year Master at the Technische Universität München (TüM, Germany).',
+                    text: 'First year Master at the Technische Universität München (TüM, Germany).',
                   ),
                   ExtraLine(
                     imagePath: 'assets/ufsc.jpg',

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class PortfolioSubsection extends StatelessWidget {
   PortfolioSubsection({
-    @required this.image,
-    @required this.content,
+    required this.image,
+    required this.content,
     this.isLeftAligned: true,
   });
 
@@ -16,8 +16,7 @@ class PortfolioSubsection extends StatelessWidget {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
       alignment: WrapAlignment.center,
-      verticalDirection:
-          isLeftAligned ? VerticalDirection.up : VerticalDirection.down,
+      verticalDirection: isLeftAligned ? VerticalDirection.up : VerticalDirection.down,
       spacing: 100,
       runSpacing: 50,
       children: [

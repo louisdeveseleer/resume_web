@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class MenuItem extends StatelessWidget {
   const MenuItem({
-    Key key,
-    @required this.text,
-  }) : super(key: key);
+    super.key,
+    required this.text,
+  });
 
   final String text;
 
@@ -21,7 +21,7 @@ class MenuItem extends StatelessWidget {
   }
 
   Widget _content(BuildContext context) {
-    TextStyle textStyle = Theme.of(context).textTheme.headlineLarge.copyWith(
+    final textStyle = Theme.of(context).textTheme.headlineLarge?.copyWith(
           color: Colors.black87,
         );
     return Row(
@@ -33,7 +33,7 @@ class MenuItem extends StatelessWidget {
         SizedBox(width: 8),
         Icon(
           Icons.keyboard_arrow_down_rounded,
-          color: textStyle.color,
+          color: textStyle?.color,
         ),
       ],
     );

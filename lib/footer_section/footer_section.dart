@@ -6,8 +6,7 @@ import 'package:resume_web_app/widgets/launch_url.dart';
 class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle =
-        Theme.of(context).textTheme.bodyMedium.copyWith(color: Colors.white);
+    final textStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
     return Container(
       padding: EdgeInsets.all(16),
       width: MediaQuery.of(context).size.width,
@@ -45,7 +44,7 @@ class FooterSection extends StatelessWidget {
     );
   }
 
-  Widget _buildItem(TextStyle textStyle, VoidCallback callback, String text) {
+  Widget _buildItem(TextStyle? textStyle, VoidCallback callback, String text) {
     return FittedBox(
       child: ClickRegion(
         onClick: callback,

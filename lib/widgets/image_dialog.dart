@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 Future showImageDialog({
-  @required BuildContext context,
-  @required String imagePath,
+  required BuildContext context,
+  required String imagePath,
 }) async {
   await showDialog(
     context: context,

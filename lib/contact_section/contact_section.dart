@@ -1,11 +1,27 @@
-import 'package:universal_html/html.dart' as html;
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:resume_web_app/theme.dart';
+import 'package:resume_web_app/widgets/launch_url.dart';
 import 'package:resume_web_app/widgets/responsive_widget.dart';
 import 'package:resume_web_app/widgets/section_title.dart';
 
 class ContactSection extends StatelessWidget {
+  void _openLinkedin() {
+    launchURL('https://www.linkedin.com/in/louisdeveseleer/');
+  }
+
+  void _openMedium() {
+    launchURL('https://medium.com/@louis.deveseleer');
+  }
+
+  Future<void> _copyEmail(BuildContext context) async {
+    await Clipboard.setData(ClipboardData(text: 'louis.deveseleer@gmail.com'));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(const SnackBar(content: Text('Copied to clipboard')));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,27 +34,50 @@ class ContactSection extends StatelessWidget {
             children: [
               SectionTitle(
                 icon: Icons.contact_page,
-                title: 'Contact',
+                title: 'Connect',
               ),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      color: Color(0xffccaa8f),
-                      child: ContactBlock(
-                        title: 'Email',
-                        information: 'louis.deveseleer@gmail.com',
-                        iconData: Icons.email,
+                    InkWell(
+                      onTap: () => _copyEmail(context),
+                      child: Container(
+                        color: Color(0xffccaa8f),
+                        child: ContactBlock(
+                          label: 'louis.deveseleer@gmail.com',
+                          icon: Icon(
+                            Icons.email,
+                            size: 56,
+                          ),
+                        ),
                       ),
                     ),
-                    Container(
-                      color: Color(0xffccaa8f),
-                      child: ContactBlock(
-                        title: 'Phone',
-                        information: '+1 919 746 6263',
-                        iconData: Icons.phone,
+                    InkWell(
+                      onTap: _openLinkedin,
+                      child: Container(
+                        color: Color(0xffccaa8f),
+                        child: ContactBlock(
+                          label: 'LinkedIn',
+                          icon: FaIcon(
+                            FontAwesomeIcons.linkedin,
+                            size: 56,
+                          ),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: _openMedium,
+                      child: Container(
+                        color: Color(0xffccaa8f),
+                        child: ContactBlock(
+                          label: 'Blog (Medium)',
+                          icon: FaIcon(
+                            FontAwesomeIcons.medium,
+                            size: 56,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -53,32 +92,12 @@ class ContactSection extends StatelessWidget {
 }
 
 class ContactBlock extends StatelessWidget {
-  final String title;
-  final String information;
-  final IconData iconData;
+  final String label;
+  final Widget icon;
   ContactBlock({
-    @required this.title,
-    @required this.information,
-    @required this.iconData,
+    required this.label,
+    required this.icon,
   });
-
-  bool _copyToClipboardHack(String text) {
-    final testArea = new html.TextAreaElement();
-    html.document.body.append(testArea);
-    testArea.style.border = '0';
-    testArea.style.margin = '0';
-    testArea.style.padding = '0';
-    testArea.style.opacity = '0';
-    testArea.style.position = 'absolute';
-    testArea.readOnly = true;
-    testArea.value = text;
-    testArea.select();
-    final result = html.document.execCommand('copy');
-    testArea.remove();
-    return result;
-  }
-
-  final snackBar = SnackBar(content: Text('Text copied to clipboard.'));
 
   @override
   Widget build(BuildContext context) {
@@ -88,41 +107,28 @@ class ContactBlock extends StatelessWidget {
         width: 420,
         padding: EdgeInsets.symmetric(
             horizontal: 16,
-            vertical: min(
-                60, max(8, (MediaQuery.of(context).size.height - 600) / 4))),
+            vertical: min(40, max(8, (MediaQuery.of(context).size.height - 600) / 4))),
         child: isSmall
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Icon(
-                    iconData,
-                  ),
+                  icon,
                   SizedBox(
                     height: 8,
                   ),
                   FittedBox(
                     child: SelectableText(
-                      information,
+                      label,
                       scrollPhysics: NeverScrollableScrollPhysics(),
                       style: Theme.of(context).textTheme.headline6,
                     ),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.copy),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                      _copyToClipboardHack(information);
-                    },
                   ),
                 ],
               )
             : Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(
-                    iconData,
-                    size: isSmall ? 32 : 64,
-                  ),
+                  icon,
                   SizedBox(
                     width: 16,
                     height: 16,
@@ -132,17 +138,10 @@ class ContactBlock extends StatelessWidget {
                     children: [
                       FittedBox(
                         child: SelectableText(
-                          information,
+                          label,
                           scrollPhysics: NeverScrollableScrollPhysics(),
                           style: Theme.of(context).textTheme.headline6,
                         ),
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.copy),
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          _copyToClipboardHack(information);
-                        },
                       ),
                     ],
                   ),

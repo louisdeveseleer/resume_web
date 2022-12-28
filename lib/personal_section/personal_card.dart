@@ -7,9 +7,9 @@ class PersonalCard extends StatefulWidget {
   final String imagePath2;
 
   PersonalCard({
-    @required this.text,
-    @required this.imagePath1,
-    @required this.imagePath2,
+    required this.text,
+    required this.imagePath1,
+    required this.imagePath2,
   });
 
   @override
@@ -18,10 +18,10 @@ class PersonalCard extends StatefulWidget {
 
 class _PersonalCardState extends State<PersonalCard> {
   bool isFlipped = false;
-  Image image1;
-  Image image2;
-  TextStyle textStyle;
-  double width;
+  late final Image image1;
+  late final Image image2;
+  TextStyle? textStyle;
+  late final double width;
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _PersonalCardState extends State<PersonalCard> {
   void didChangeDependencies() {
     precacheImage(image1.image, context);
     precacheImage(image2.image, context);
-    textStyle = Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 20);
+    textStyle = Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 20);
     width = min(MediaQuery.of(context).size.width - 64, 300);
     super.didChangeDependencies();
   }
@@ -58,7 +58,7 @@ class _PersonalCardState extends State<PersonalCard> {
             duration: Duration(milliseconds: 500),
             curve: Curves.easeOut,
             tween: Tween<double>(begin: 0, end: isFlipped ? 180 : 0),
-            builder: (context, value, child) {
+            builder: (context, double value, child) {
               return GestureDetector(
                 onTap: () {
                   setState(() {
@@ -110,8 +110,7 @@ class RotationY extends StatelessWidget {
   final Widget child;
   final double rotationY;
 
-  const RotationY({Key key, @required this.child, this.rotationY = 0})
-      : super(key: key);
+  const RotationY({super.key, required this.child, this.rotationY = 0});
 
   @override
   Widget build(BuildContext context) {

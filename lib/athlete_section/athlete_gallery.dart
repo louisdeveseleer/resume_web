@@ -9,7 +9,7 @@ class AthleteGallery extends StatefulWidget {
 }
 
 class _AthleteGalleryState extends State<AthleteGallery> {
-  CarouselController _controller;
+  late final CarouselController _controller;
 
   @override
   void initState() {
@@ -43,8 +43,7 @@ class _AthleteGalleryState extends State<AthleteGallery> {
         AthleteItem(
           title: 'Hiking',
           subtitle: 'Connecting with nature',
-          text:
-              'I love hiking/camping trips to take a break from every day life.',
+          text: 'I love hiking/camping trips to take a break from every day life.',
           imagePath: 'assets/hiking.jpg',
           callback: () => _controller.animateToPage(2),
         ),
@@ -71,11 +70,11 @@ class AthleteItem extends StatelessWidget {
   final String imagePath;
   final VoidCallback callback;
   AthleteItem({
-    @required this.title,
-    @required this.subtitle,
-    @required this.text,
-    @required this.imagePath,
-    @required this.callback,
+    required this.title,
+    required this.subtitle,
+    required this.text,
+    required this.imagePath,
+    required this.callback,
   });
 
   @override
@@ -111,7 +110,7 @@ class AthleteItem extends StatelessWidget {
   }
 
   Widget _buildText({
-    @required BuildContext context,
+    required BuildContext context,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,

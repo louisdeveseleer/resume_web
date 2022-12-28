@@ -11,9 +11,8 @@ class DeveloperSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.bodyText1;
-    final TextStyle titleStyle =
-        Theme.of(context).textTheme.headline4.copyWith(color: Color(0xff595e52));
+    final textStyle = Theme.of(context).textTheme.bodyText1;
+    final titleStyle = Theme.of(context).textTheme.headline4?.copyWith(color: Color(0xff595e52));
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -151,7 +150,7 @@ class DeveloperSection extends StatelessWidget {
                                 'https://app.rellasocial.com/',
                               ),
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.black,
+                                backgroundColor: Colors.black,
                                 fixedSize: Size.fromHeight(42),
                               ),
                               child: Text('Web app'),

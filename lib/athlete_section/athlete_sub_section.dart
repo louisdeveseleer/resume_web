@@ -12,18 +12,17 @@ class AthleteSubSection extends StatelessWidget {
   final bool leftAligned;
 
   AthleteSubSection({
-    @required this.title,
-    @required this.subtitle,
-    @required this.text,
-    @required this.imagePath,
+    required this.title,
+    required this.subtitle,
+    required this.text,
+    required this.imagePath,
     this.leftAligned: true,
   });
 
   @override
   Widget build(BuildContext context) {
     final bool isSmall = ResponsiveWidget.isSmallScreen(context);
-    double maxWidth =
-        min(MediaQuery.of(context).size.width, Styles.maxContentWidth);
+    double maxWidth = min(MediaQuery.of(context).size.width, Styles.maxContentWidth);
     if (!isSmall) maxWidth /= 2;
 
     return Padding(
@@ -35,24 +34,20 @@ class AthleteSubSection extends StatelessWidget {
                 SizedBox(
                   height: 32,
                 ),
-                _buildText(
-                    context: context, maxWidth: maxWidth, isSmall: isSmall),
+                _buildText(context: context, maxWidth: maxWidth, isSmall: isSmall),
               ],
             )
           : Row(
-              mainAxisAlignment:
-                  leftAligned ? MainAxisAlignment.start : MainAxisAlignment.end,
+              mainAxisAlignment: leftAligned ? MainAxisAlignment.start : MainAxisAlignment.end,
               children: [
                 leftAligned
                     ? _buildPicture(maxWidth: maxWidth)
-                    : _buildText(
-                        context: context, maxWidth: maxWidth, isSmall: isSmall),
+                    : _buildText(context: context, maxWidth: maxWidth, isSmall: isSmall),
                 SizedBox(
                   width: 64,
                 ),
                 leftAligned
-                    ? _buildText(
-                        context: context, maxWidth: maxWidth, isSmall: isSmall)
+                    ? _buildText(context: context, maxWidth: maxWidth, isSmall: isSmall)
                     : _buildPicture(maxWidth: maxWidth),
               ],
             ),
@@ -60,9 +55,7 @@ class AthleteSubSection extends StatelessWidget {
   }
 
   Widget _buildText(
-      {@required BuildContext context,
-      @required double maxWidth,
-      @required bool isSmall}) {
+      {required BuildContext context, required double maxWidth, required bool isSmall}) {
     return Container(
       width: 600,
       constraints: BoxConstraints(maxWidth: maxWidth - 80),
@@ -98,7 +91,7 @@ class AthleteSubSection extends StatelessWidget {
     );
   }
 
-  Widget _buildPicture({double maxWidth}) {
+  Widget _buildPicture({required double maxWidth}) {
     return Container(
       height: 350,
       constraints: BoxConstraints(

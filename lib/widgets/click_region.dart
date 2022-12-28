@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ClickRegion extends StatelessWidget {
-  final Function onClick;
+  final VoidCallback onClick;
   final Widget child;
   ClickRegion({
-    @required this.onClick,
-    @required this.child,
+    required this.onClick,
+    required this.child,
   });
 
   @override

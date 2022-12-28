@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  ScrollController _scrollController;
+  late final ScrollController _scrollController;
 
   @override
   void initState() {

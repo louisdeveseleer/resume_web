@@ -7,9 +7,9 @@ class BouncingProfilePic extends StatefulWidget {
 
 class _BouncingProfilePicState extends State<BouncingProfilePic>
     with SingleTickerProviderStateMixin {
-  Animation<double> _appearanceAnimation;
-  AnimationController _appearanceController;
-  Image louis;
+  late final Animation<double> _appearanceAnimation;
+  late final AnimationController _appearanceController;
+  late final Image louis;
   bool louisIsLoaded = false;
 
   @override
