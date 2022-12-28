@@ -37,7 +37,6 @@ firebase.json
 /build/
 
 # Web related
-lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -153,7 +152,6 @@ output.json
 #.packages
 #.pub-cache/
 #.pub/
-#lib/generated_plugin_registrant.dart
 
 # Android related
 **/android/**/gradle-wrapper.jar
