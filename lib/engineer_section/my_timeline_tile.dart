@@ -18,8 +18,8 @@ class MyTimelineTile extends StatefulWidget {
     required this.date,
     required this.title,
     required this.subtitle,
-    this.isFirst: false,
-    this.isLast: false,
+    this.isFirst = false,
+    this.isLast = false,
     required this.extras,
   });
 
@@ -69,7 +69,7 @@ class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStat
           });
         });
       }
-      PageStorage.of(context)?.writeState(context, _isExpanded);
+      PageStorage.of(context).writeState(context, _isExpanded);
     });
   }
 
@@ -144,7 +144,7 @@ class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStat
                           padding: EdgeInsets.only(right: 32),
                           child: Text(
                             widget.date,
-                            style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   fontStyle: FontStyle.italic,
                                 ),
                             textAlign: TextAlign.end,
@@ -214,7 +214,7 @@ class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStat
                                             ? Text(
                                                 widget.date,
                                                 style:
-                                                    Theme.of(context).textTheme.bodyText1?.copyWith(
+                                                    Theme.of(context).textTheme.bodyMedium?.copyWith(
                                                           fontStyle: FontStyle.italic,
                                                         ),
                                               )
@@ -223,12 +223,12 @@ class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStat
                                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                                           child: Text(
                                             widget.title,
-                                            style: Theme.of(context).textTheme.headline5,
+                                            style: Theme.of(context).textTheme.titleLarge,
                                           ),
                                         ),
                                         Text(
                                           widget.subtitle,
-                                          style: Theme.of(context).textTheme.bodyText1,
+                                          style: Theme.of(context).textTheme.bodyMedium,
                                         ),
                                       ],
                                     ),
@@ -292,7 +292,7 @@ class _MyTimelineTileState extends State<MyTimelineTile> with TickerProviderStat
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: Text(
             e.text,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
       ),

@@ -15,14 +15,14 @@ class PersonalSection extends StatelessWidget {
     imagePath2: 'assets/raleigh-map.jpg',
   );
   final PersonalCard personalCard3 = PersonalCard(
-    text: 'with wife Imari',
-    imagePath1: 'assets/imari.jpg',
-    imagePath2: 'assets/imari_and_louis.jpg',
+    text: 'Flutter passionnate',
+    imagePath1: 'assets/flutter1.jpg',
+    imagePath2: 'assets/flutter2.png',
   );
   final PersonalCard personalCard4 = PersonalCard(
-    text: 'and cat Bella',
-    imagePath1: 'assets/bella.jpg',
-    imagePath2: 'assets/bella2.jpg',
+    text: 'Avid mover',
+    imagePath1: 'assets/cali2.jpg',
+    imagePath2: 'assets/cali1.jpg',
   );
 
   @override

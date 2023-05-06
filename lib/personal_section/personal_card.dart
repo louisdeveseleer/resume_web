@@ -34,7 +34,7 @@ class _PersonalCardState extends State<PersonalCard> {
   void didChangeDependencies() {
     precacheImage(image1.image, context);
     precacheImage(image2.image, context);
-    textStyle = Theme.of(context).textTheme.bodyText1?.copyWith(fontSize: 20);
+    textStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 20);
     width = min(MediaQuery.of(context).size.width - 64, 300);
     super.didChangeDependencies();
   }

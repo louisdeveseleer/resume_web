@@ -8,7 +8,7 @@ class DeveloperText extends StatelessWidget {
   Widget build(BuildContext context) {
     final isSmall = ResponsiveWidget.isSmallScreen(context);
     final padding = isSmall ? 16.0 : 32.0;
-    final _textStyle = Theme.of(context).textTheme.bodyText1;
+    final _textStyle = Theme.of(context).textTheme.bodyMedium;
     final _accentTextStyle = _textStyle?.copyWith(
       color: Color(0xff748A4D),
       fontWeight: FontWeight.bold,

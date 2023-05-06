@@ -65,7 +65,7 @@ class HeaderSection extends StatelessWidget {
                       },
                       child: Text(
                         'pdf version',
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
                   ],

@@ -11,8 +11,8 @@ class DeveloperSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.bodyText1;
-    final titleStyle = Theme.of(context).textTheme.headline4?.copyWith(color: Color(0xff595e52));
+    final textStyle = Theme.of(context).textTheme.bodyMedium;
+    final titleStyle = Theme.of(context).textTheme.titleLarge?.copyWith(color: Color(0xff595e52));
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -41,7 +41,7 @@ class DeveloperSection extends StatelessWidget {
               ),
               Text(
                 'Here are my Flutter projects:',
-                style: Theme.of(context).textTheme.headline5,
+                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.start,
               ),
               SizedBox(

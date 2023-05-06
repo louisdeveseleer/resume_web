@@ -121,21 +121,21 @@ class AthleteItem extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title,
-            style: Theme.of(context).textTheme.headline4,
+            style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             subtitle,
-            style: Theme.of(context).textTheme.headline5,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             text,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
         ),
       ],

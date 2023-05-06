@@ -16,7 +16,7 @@ class AthleteSubSection extends StatelessWidget {
     required this.subtitle,
     required this.text,
     required this.imagePath,
-    this.leftAligned: true,
+    this.leftAligned= true,
   });
 
   @override

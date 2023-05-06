@@ -4,7 +4,7 @@ class PortfolioSubsection extends StatelessWidget {
   PortfolioSubsection({
     required this.image,
     required this.content,
-    this.isLeftAligned: true,
+    this.isLeftAligned= true,
   });
 
   final Widget image;

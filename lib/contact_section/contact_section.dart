@@ -120,7 +120,7 @@ class ContactBlock extends StatelessWidget {
                     child: SelectableText(
                       label,
                       scrollPhysics: NeverScrollableScrollPhysics(),
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                 ],
@@ -140,7 +140,7 @@ class ContactBlock extends StatelessWidget {
                         child: SelectableText(
                           label,
                           scrollPhysics: NeverScrollableScrollPhysics(),
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                     ],
